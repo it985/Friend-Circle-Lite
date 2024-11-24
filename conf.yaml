@@ -22,7 +22,7 @@ spider_settings:
 #   body_template:      邮件正文的 HTML 模板文件
 email_push:
   enable: false
-  to_email: admin@study996.cn
+  to_email: recipient@example.com
   subject: "今天的 RSS 订阅更新"
   body_template: "rss_template.html"
 
@@ -239,3 +239,123 @@ specific_RSS:
 
   - name: "青桔气球"
     url: "https://blog.qjqq.cn/atom.xml"
+
+  - name: "Tianli's Blog"
+    url: "https://blog.tianli0.top/rss.xml"
+    
+  - name: "铭心石刻"
+    url: "https://blog.kouseki.cn/rss.xml"
+    
+  - name: "伍十七"
+    url: "https://blog.everfu.cn/atom.xml"
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  #  - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""        
