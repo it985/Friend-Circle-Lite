@@ -255,8 +255,8 @@ specific_RSS:
   - name: "ZkeqのCoding日志"
     url: "https://icodeq.com/feed.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "熊猫不是猫QAQ"
+    url: "https://panda995.xyz/feed/"
 
   # - name: ""
   #   url: ""
