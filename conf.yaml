@@ -9,7 +9,7 @@
 spider_settings:
   enable: true
   json_url: "https://blog.study996.cn/friend.json"
-  article_count: 999
+  article_count: 9999
   merge_result:
     enable: true
     merge_json_url: "https://fc.study996.cn"
@@ -249,11 +249,11 @@ specific_RSS:
   - name: "伍十七"
     url: "https://blog.everfu.cn/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "达叔"
+    url: "https://www.uncleda.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "ZkeqのCoding日志"
+    url: "https://icodeq.com/feed.xml"
     
   # - name: ""
   #   url: ""
