@@ -258,8 +258,107 @@ specific_RSS:
   - name: "熊猫不是猫QAQ"
     url: "https://panda995.xyz/feed/"
 
+  - name: "子夜松声"
+    url: "https://xyzbz.cn/feed/atom/"
+
+  - name: "华岁云小屋"
+    url: "https://www.vlo.cc/feed"
+
+  - name: "勿埋我心"
+    url: "https://www.skyqian.com/feed/"
+    
   # - name: ""
   #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  #  - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: "" 
 
   # - name: ""
   #   url: ""
