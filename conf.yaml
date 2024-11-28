@@ -9,13 +9,13 @@
 spider_settings:
   enable: true
   json_url: "https://blog.study996.cn/friend.json"
-  article_count: 9999
+  article_count: 999999
   merge_result:
     enable: true
     merge_json_url: "https://fc.study996.cn"
 
 # 邮箱推送功能配置，暂未实现，等待后续开发
-# 解释：每天为指定邮箱推送所有友链文章的更新，仅能指定一个
+# 解释：每天为指定邮箱推送所有友链文章的更新，仅能指定一个s
 #   enable:             是否启用邮箱推送功能
 #   to_email:           收件人邮箱地址
 #   subject:            邮件主题
@@ -270,35 +270,35 @@ specific_RSS:
   - name: "子舒的博客"
     url: "https://zishu.me/index.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "异次元软件世界"
+    url: "https://www.iplaysoft.com/feed/atom"
 
-  # - name: ""
-  #   url: ""
+  - name: "异次元软件世界"
+    url: "https://feed.iplaysoft.com/"
 
-  # - name: ""
-  #   url: ""
+  - name: "果核剥壳"
+    url: "https://www.ghxi.com/feed"
     
-  # - name: ""
-  #   url: ""
+  - name: "蓝点网"
+    url: "https://www.landiannews.com/rss"
 
-  # - name: ""
-  #   url: ""
+  - name: "小可博客"
+    url: "https://www.keke.moe/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "海棠网"
+    url: "https://www.haitangw.cc/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "大眼仔旭"
+    url: "https://www.dayanzai.me/?feed=rss"
     
-  # - name: ""
-  #   url: ""
+  - name: "鸭先知"
+    url: "https://www.yxzhi.com/feed"
     
-  # - name: ""
-  #   url: ""
+  - name: "佛系软件"
+    url: "https://foxirj.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "App热"
+    url: "https://apphot.cc/feed"
 
   # - name: ""
   #   url: ""
