@@ -267,8 +267,8 @@ specific_RSS:
   - name: "勿埋我心"
     url: "https://www.skyqian.com/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "子舒的博客"
+    url: "https://zishu.me/index.xml"
     
   # - name: ""
   #   url: ""
