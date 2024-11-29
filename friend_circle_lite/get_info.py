@@ -52,6 +52,8 @@ def format_published_time(time_str):
     shanghai_time = parsed_time.astimezone(timezone(timedelta(hours=8)))
     return shanghai_time.strftime('%Y-%m-%d %H:%M')
 
+
+
 def check_feed(blog_url, session):
     """
     检查博客的 RSS 或 Atom 订阅链接。
@@ -90,6 +92,7 @@ def check_feed(blog_url, session):
             continue
     logging.warning(f"无法找到 {blog_url} 的订阅链接")
     return ['none', blog_url]
+
 
 def parse_feed(url, session, count=5, blog_url=''):
     """
@@ -145,9 +148,6 @@ def parse_feed(url, session, count=5, blog_url=''):
         
         # 对文章按时间排序，并只取前 count 篇文章
         result['articles'] = sorted(result['articles'], key=lambda x: datetime.strptime(x['published'], '%Y-%m-%d %H:%M'), reverse=True)
-        
-        # 这里去除限制，支持返回所有文章
-        # 如果要限制为99999篇可以直接使用 count 大于等于文章数
         if count < len(result['articles']):
             result['articles'] = result['articles'][:count]
         
@@ -171,6 +171,10 @@ def replace_non_domain(link: str, blog_url: str) -> str:
     :param blog_url: 替换为的博客地址
     :return: 替换后的地址字符串
     """
+    
+    # 提取link中的路径部分，无需协议和域名
+    # path = re.sub(r'^https?://[^/]+', '', link)
+    # print(path)
     
     return link
 
@@ -230,13 +234,13 @@ def process_friend(friend, session, count, specific_RSS=[]):
             'articles': []
         }
 
-def fetch_and_process_data(json_url, specific_RSS=[], count=99999):
+def fetch_and_process_data(json_url, specific_RSS=[], count=5):
     """
     读取 JSON 数据并处理订阅信息，返回统计数据和文章信息。
 
     参数：
     json_url (str): 包含朋友信息的 JSON 文件的 URL。
-    count (int): 获取每个博客的最大文章数，默认为99999篇。
+    count (int): 获取每个博客的最大文章数。
     specific_RSS (list): 包含特定 RSS 源的字典列表 [{name, url}]
 
     返回：
@@ -390,7 +394,7 @@ def deal_with_large_data(result):
     article_data = result.get("article_data", [])
 
     # 检查文章数量是否大于 150
-    max_articles = 99999  # 设置为99999篇
+    max_articles = 150
     if len(article_data) > max_articles:
         logging.info("数据量较大，开始进行处理...")
         # 获取前 max_articles 篇文章的作者集合
@@ -409,4 +413,3 @@ def deal_with_large_data(result):
         logging.info(f"数据处理完成，保留 {len(filtered_articles)} 篇文章")
 
     return result
-
