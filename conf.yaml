@@ -324,8 +324,8 @@ specific_RSS:
   - name: "月光博客"
     url: "https://www.williamlong.info/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "大象笔记"
+    url: "https://www.sunzhongwei.com/feed"
     
   # - name: ""
   #   url: ""
