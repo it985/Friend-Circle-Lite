@@ -336,10 +336,10 @@ specific_RSS:
   - name: "Hi, DIYgod"
     url: "https://diygod.cc/feed"
 
-   - name: "徐徐爱coding"
+  - name: "徐徐爱coding"
     url: "https://www.xu69.com/rss.xml"
     
-  - name: "小李同学<"
+  - name: "小李同学"
     url: "https://blog.xxfer.cn/rss.xml"
     
   - name: "Fgaoxing"
