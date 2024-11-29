@@ -300,20 +300,20 @@ specific_RSS:
   - name: "App热"
     url: "https://apphot.cc/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "回忆航线"
+    url: "https://kunkunyu.com/rss.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "sky博客"
+    url: "https://www.5ee.net/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "风记星辰"
+    url: "https://www.thyuu.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "ZLX STUDIO"
+    url: "https://blog.iooioio.com/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "新都在"
+    url: "https://blog.xindu.site/rss.xml"
     
   # - name: ""
   #   url: ""
@@ -457,4 +457,148 @@ specific_RSS:
   #   url: ""
 
   # - name: ""
-  #   url: ""        
+  #   url: ""  
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  #  - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: "" 
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  #  - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+    
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
