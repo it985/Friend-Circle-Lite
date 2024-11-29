@@ -327,23 +327,23 @@ specific_RSS:
   - name: "大象笔记"
     url: "https://www.sunzhongwei.com/feed"
     
-  # - name: ""
-  #   url: ""
+  - name: "無名小栈"
+    url: "https://blog.imsyy.top/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "MuXiaoChen🍊"
+    url: "https://www.aimiliy.top/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "Hi, DIYgod"
+    url: "https://diygod.cc/feed"
 
-  #  - name: ""
-  #   url: ""
+   - name: "徐徐爱coding"
+    url: "https://www.xu69.com/rss.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "小李同学<"
+    url: "https://blog.xxfer.cn/rss.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "Fgaoxing"
+    url: "https://www.yt-blog.top/atom.xml"
 
   # - name: ""
   #   url: ""
