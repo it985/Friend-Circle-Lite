@@ -94,7 +94,7 @@ def check_feed(blog_url, session):
     return ['none', blog_url]
 
 
-def parse_feed(url, session, count=5, blog_url=''):
+def parse_feed(url, session, count=999999, blog_url=''):
     """
     解析 Atom 或 RSS2 feed 并返回包含网站名称、作者、原链接和每篇文章详细内容的字典。
 
@@ -234,7 +234,7 @@ def process_friend(friend, session, count, specific_RSS=[]):
             'articles': []
         }
 
-def fetch_and_process_data(json_url, specific_RSS=[], count=5):
+def fetch_and_process_data(json_url, specific_RSS=[], count=999999):
     """
     读取 JSON 数据并处理订阅信息，返回统计数据和文章信息。
 
@@ -394,7 +394,7 @@ def deal_with_large_data(result):
     article_data = result.get("article_data", [])
 
     # 检查文章数量是否大于 150
-    max_articles = 150
+    max_articles = 999999
     if len(article_data) > max_articles:
         logging.info("数据量较大，开始进行处理...")
         # 获取前 max_articles 篇文章的作者集合
