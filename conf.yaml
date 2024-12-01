@@ -345,11 +345,11 @@ specific_RSS:
   - name: "Fgaoxing"
     url: "https://www.yt-blog.top/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "夏柔"
+    url: "https://www.wpon.cn/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "浅浅时光"
+    url: "https://www.imuu.cn/feed"
     
   # - name: ""
   #   url: ""
