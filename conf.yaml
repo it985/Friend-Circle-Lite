@@ -9,7 +9,7 @@
 spider_settings:
   enable: true
   json_url: "https://blog.study996.cn/friend.json"
-  article_count: 5
+  article_count: 2
   merge_result:
     enable: true
     merge_json_url: "https://fc.study996.cn"
@@ -351,11 +351,11 @@ specific_RSS:
   - name: "浅浅时光"
     url: "https://www.imuu.cn/feed"
     
-  # - name: ""
-  #   url: ""
+  - name: "莫比乌斯"
+    url: "https://onojyun.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "三无青年"
+    url: "https://www.duanxiansen.com/feed"
 
   # - name: ""
   #   url: "" 
