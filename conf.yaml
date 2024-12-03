@@ -357,14 +357,14 @@ specific_RSS:
   - name: "三无青年"
     url: "https://www.duanxiansen.com/feed"
 
-  # - name: ""
-  #   url: "" 
+  - name: "Never7"
+    url: "https://neverup.cn/index.xml" 
 
-  # - name: ""
-  #   url: ""
+  - name: "纸鹿本鹿"
+    url: "https://blog.zhilu.cyou/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "Handsome 's Blog"
+    url: "https://www.mmm.sd/rss.xml"
     
   # - name: ""
   #   url: ""
