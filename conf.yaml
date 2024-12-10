@@ -528,17 +528,17 @@ specific_RSS:
   - name: "阿猫"
     url: "https://ameow.xyz/feed.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "P3TERX ZONE"
+    url: "https://p3terx.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "刘悦"
+    url: "https://v3u.cn/sitemap.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "小众软件官方论坛 - 最新帖子"
+    url: "https://meta.appinn.net/posts.rss"
     
-  # - name: ""
-  #   url: ""
+  - name: "小众软件官方论坛 - 最新话题"
+    url: "https://meta.appinn.net/latest.rss"
 
   # - name: ""
   #   url: ""
