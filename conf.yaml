@@ -540,29 +540,29 @@ specific_RSS:
   - name: "小众软件官方论坛 - 最新话题"
     url: "https://meta.appinn.net/latest.rss"
 
-  # - name: ""
-  #   url: ""
+  - name: "二丫讲梵"
+    url: "https://wiki.eryajf.net/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "两双筷子"
+    url: "https://www.dbkuaizi.com/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "老胡的周刊"
+    url: "https://weekly.howie6879.com/rss/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "柒's Blog"
+    url: "https://blog.52itstyle.vip/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "卡卡罗特"
+    url: "https://blog.share888.top/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "Bboysoul's Blog"
+    url: "https://www.bboy.app/atom.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "打工人日志"
+    url: "https://www.jobcher.com/index.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "六月是只猫"
+    url: "https://www.lyszm.com/feed/"
 
   # - name: ""
   #   url: ""
