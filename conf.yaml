@@ -564,17 +564,17 @@ specific_RSS:
   - name: "六月是只猫"
     url: "https://www.lyszm.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "姓王者的博客"
+    url: "https://xingwangzhe.fun/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "kshao前端知识记录"
+    url: "https://ksh7.com/atom.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "龙哥"
+    url: "https://long.ge/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "mei的网络日志"
+    url: "https://mei.lv/atom.xml"
 
   # - name: ""
   #   url: ""
