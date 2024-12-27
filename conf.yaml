@@ -12,7 +12,8 @@ spider_settings:
   article_count: 2
   merge_result:
     enable: true
-    merge_json_url: "https://fc.study996.cn"
+    # merge_json_url: "https://fc.study996.cn"
+    merge_json_url: "https://fc.20000216.xyz"
 
 # 邮箱推送功能配置，暂未实现，等待后续开发
 # 解释：每天为指定邮箱推送所有友链文章的更新，仅能指定一个 s
@@ -612,11 +613,11 @@ specific_RSS:
   - name: "不良林"
     url: "https://bulianglin.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "大头钉的小小 blog"
+    url: "https://luckyting.top/index.php/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "叁月柒の小世界"
+    url: "https://sanyue.site/atom.xml"
     
   # - name: ""
   #   url: ""
