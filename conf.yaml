@@ -667,42 +667,138 @@ specific_RSS:
   - name: "寻梦收藏馆"
     url: "https://blog.20000216.xyz/feed.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "胴体的诱惑"
+    url: "https://dongti.blog.2nt.com/?xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "樱糖 [YINGTALL]"
+    url: "https://yingtall.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "福利兔 - 快跟福利兔许个愿吧（*＾-＾*）"
+    url: "https://www.fulitu.cc/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "集图录·集图鹿"
+    url: "https://www.jitulu.com/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "玄龙网·微图录"
+    url: "https://www.xuanloog.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "BDSM Home"
+    url: "https://www.bdsmcn.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "NiceGirl"
+    url: "https://nicegirl.in/atom.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "8k Cosplay Zone"
+    url: "https://www.8kcosplay.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "福利吧"
+    url: "https://fuliba2025.net/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "ASMR 第一站"
+    url: "https://asmr1.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "ASMR 视频网"
+    url: "https://www.asmrv.com/feed"
     
+  - name: "爱上 ASMR"
+    url: "https://www.asasmr4.com/feed"
+    
+  - name: "奥利弗的狗窝"
+    url: "https://www.aolifu.org/rss/feed.xml"
+
+  - name: "语斋物语"
+    url: "https://www.xzwy.cc/feed"
+
+  - name: "秀网阁;在线看美图"
+    url: "https://w1.xwang01.vip/feed"
+    
+  - name: "奈思 ASMR"
+    url: "https://www.nicezm.cn/feed"
+
+  - name: "助眠啦"
+    url: "https://asmrla.com/feed"
+
+  - name: "ASMR 助眠站"
+    url: "https://www.licailun.com/feed"
+
+  - name: "小贱贱吧"
+    url: "https://www.xiaojianjian.net/feed"
+  
+  - name: "雨月空间站"
+    url: "https://www.mintimate.cn/atom.xml"
+
+  - name: "algorithmnote"
+    url: "https://www.algorithmnote.cn/index.php/feed/atom/"
+
+  - name: "泠泫凝"
+    url: "https://lxnchan.cn/atom.xml"
+  
+  - name: "码霸霸"
+    url: "https://blog.lupf.cn/rss.xml"
+
+  - name: "HealeJean 的梦想博客"
+    url: "http://blog.healerjean.com/atom.xml"
+
+  - name: "咕咕咕的小破站"
+    url: "https://cooooing.github.io/atom.xml"
+
+  - name: "晓果冻"
+    url: "https://www.chenmx.net/rss.xml"
+
+  - name: "新逸 Cary"
+    url: "https://blog.xinac.cn/atom.xml"
+
+  - name: "清茶书香"
+    url: "https://hibennett.cn/rss.xml"
+
+  - name: "Meowrain の Blog"
+    url: "https://meowrain.cn/atom.xml"
+
+  - name: "wangxiaojiang"
+    url: "https://wangxiaojiang.cn/index.php/feed/"
+
+  - name: "crossoverJie's Blog"
+    url: "https://crossoverjie.top/atom.xml"
+
+  - name: "Zkeq の Coding 日志"
+    url: "https://icodeq.com/feed"
+
+  - name: "邱少羽梦"
+    url: "https://www.qiushaocloud.top/rss.xml"
+
+  - name: "芈亓的 Blog"
+    url: "https://lx95.top/rss.xml"
+
+  - name: "简言之"
+    url: "https://jwt1399.top/atom.xml"
+  
+  - name: "IACG.RIP"
+    url: "https://b.iacg.site/feed"
+
+  - name: "宾否"
+    url: "https://www.binfoo.com/feed"
+
+  - name: "P3TERX ZONE"
+    url: "https://p3terx.com/feed"
+  
+  - name: "Song`s Blog"
+    url: "https://songxwn.com/atom.xml"
+
+  - name: "Akara Blog"
+    url: "https://messiahhh.github.io/blog/blog/rss.xml"
+
+  - name: "静觅"
+    url: "https://cuiqingcai.com/atom.xml"
+
+  - name: "韩涛博客"
+    url: "https://www.hantaosec.com/feed/"
+
+  - name: "涅槃博客"
+    url: "https://niepan.org/feed/atom/"
+
   # - name: ""
   #   url: ""
-    
+
   # - name: ""
   #   url: ""
 
@@ -711,7 +807,172 @@ specific_RSS:
 
   # - name: ""
   #   url: ""
-    
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+  
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+  
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+  
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+  
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+  
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+  
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
+  # - name: ""
+  #   url: ""
+
   # - name: ""
   #   url: ""
 
