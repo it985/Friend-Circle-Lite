@@ -796,47 +796,44 @@ specific_RSS:
   - name: "涅槃博客"
     url: "https://niepan.org/feed/atom/"
 
-  # - name: ""
-  #   url: ""
+  - name: "宏尘极客"
+    url: "https://www.hcjike.com/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "Wenbin's blog"
+    url: "https://www.zzzwb.com/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "Ryan Wang's Blog"
+    url: "https://ryanc.cc/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "Anye の小站"
+    url: "https://www.anye.xyz/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "Roozen 的小破站"
+    url: "https://roozen.top/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "沉默の大多数"
+    url: "https://gyhwd.top/rss.xml"
 
-  # - name: ""
-  #   url: ""
-
-  # - name: ""
-  #   url: ""
+  - name: "阿狸鹿丫"
+    url: "https://blog.aliluya.com/rss.xml"
   
-  # - name: ""
-  #   url: ""
+  - name: "DP 次元美化"
+    url: "https://mh.dp712.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "浅时光博客"
+    url: "https://www.dqzboy.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "个人笔记"
+    url: "https://www.8uid.com/feed/"
   
-  # - name: ""
-  #   url: ""
+  - name: "御宅次元"
+    url: "https://flzzz.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "枫の主题社"
+    url: "https://winmoes.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "霜狐科技屋"
+    url: "https://www.frostfox.cn/feed"
 
   # - name: ""
   #   url: ""
