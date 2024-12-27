@@ -9,7 +9,7 @@
 spider_settings:
   enable: true
   json_url: "https://blog.study996.cn/friend.json"
-  article_count: 2
+  article_count: 1
   merge_result:
     enable: true
     # merge_json_url: "https://fc.study996.cn"
@@ -598,9 +598,6 @@ specific_RSS:
   - name: "石律读案"
     url: "https://www.itscase.cn/feed"
 
-  - name: "GGBond"
-    url: "https://looks.fku.lol/feed.xml"
-
   - name: "Airmole"
     url: "https://notebook.airmole.net/feed.xml"
 
@@ -619,56 +616,56 @@ specific_RSS:
   - name: "叁月柒の小世界"
     url: "https://sanyue.site/atom.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "夏末笔记"
+    url: "https://www.xiamo.cc/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "share1223"
+    url: "https://share1223.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "半日闲"
+    url: "https://xiaoa.me/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "吃猫的鱼"
+    url: "https://www.fish9.cn/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "鲁鲁和非人类"
+    url: "https://www.myhelen.cn/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "蜡客生活系"
+    url: "https://www.lknc.vip/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "三毛笔记"
+    url: "https://aboss.top/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "洛丽糖"
+    url: "https://luolt.cn/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "vwo50 博客站"
+    url: "https://vwo50.club/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "Yenshthen 研学绅"
+    url: "https://study.imold.wang/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "剑二十七"
+    url: "https://www.jian27.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "夏海芭的博客"
+    url: "https://xiahaiba.com/index.php/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "皮皮社"
+    url: "https://www.pipishe.com/feed/"
     
-  # - name: ""
-  #   url: ""
+  - name: "程序员鸡皮"
+    url: "https://www.xvzhu.cn/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "懂您的 AI 未来站"
+    url: "https://www.aihubpro.cn/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "XingJi の Blog"
+    url: "https://love.xingji.fun/atom.xml"
     
-  # - name: ""
-  #   url: ""
+  - name: "寻梦收藏馆"
+    url: "https://blog.20000216.xyz/feed.xml"
 
   # - name: ""
   #   url: ""
