@@ -835,8 +835,8 @@ specific_RSS:
   - name: "霜狐科技屋"
     url: "https://www.frostfox.cn/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "My YouTube Rss"
+    url: "https://it985.github.io/feed-read/feed.atom"
 
   # - name: ""
   #   url: ""
