@@ -838,8 +838,11 @@ specific_RSS:
   - name: "My YouTube Rss"
     url: "https://it985.github.io/feed-read/feed.atom"
 
-  # - name: ""
-  #   url: ""
+  - name: "湘铭`Blog"
+    url: "https://xiangming.site/feed/"
+
+  - name: "呓语梦轩"
+    url: "https://blog.awaae001.top/atom.xml"
 
   # - name: ""
   #   url: ""
