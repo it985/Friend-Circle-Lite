@@ -247,8 +247,8 @@ specific_RSS:
   - name: "铭心石刻"
     url: "https://blog.kouseki.cn/rss.xml"
     
-  - name: "伍十七"
-    url: "https://blog.everfu.cn/atom.xml"
+  # - name: "伍十七"
+  #   url: "https://blog.everfu.cn/atom.xml"
 
   - name: "达叔"
     url: "https://www.uncleda.com/feed/"
