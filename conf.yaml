@@ -844,11 +844,11 @@ specific_RSS:
   - name: "呓语梦轩"
     url: "https://blog.awaae001.top/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "Oskyla 烹茶室"
+    url: "https://frytea.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "DigVPS"
+    url: "https://digvps.com/rss.xml"
 
   # - name: ""
   #   url: ""
