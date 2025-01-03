@@ -850,35 +850,35 @@ specific_RSS:
   - name: "DigVPS"
     url: "https://digvps.com/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "小和的雪糕铺"
+    url: "https://52he.cc/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "千鹤喵绫"
+    url: "https://www.xnijika.com/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "EKsumic's Blog"
+    url: "https://www.v2know.com/rss/"
 
-  # - name: ""
-  #   url: ""
+  - name: "一世繁华"
+    url: "https://blog.hantaotao.top/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "小鹿生活志"
+    url: "https://www.t223.top/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "设计星球"
+    url: "https://sjpla.com/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "频率"
+    url: "https://pinlyu.com/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "弈趣極光"
+    url: "https://ejsoon.win/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "廿壴博客"
+    url: "https://blog.ganxb2.com/rss/atom.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "阿锋的小宇宙"
+    url: "https://feng.pub/feed"
 
   # - name: ""
   #   url: ""
