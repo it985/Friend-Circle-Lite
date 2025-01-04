@@ -719,9 +719,12 @@ specific_RSS:
   - name: "忆光博客"
     url: "https://blog.eray.cc/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "主机圈"
+    url: "https://vpsloc.com/feed"
   
+  - name: "大鸟博客"
+    url: "https://www.daniao.org/feed/"
+
   # - name: ""
   #   url: ""
 
@@ -895,9 +898,6 @@ specific_RSS:
 
   # - name: "LQBBY"
   #   url: "https://www.lqbby.com/rss.xml"
-
-  # - name: "大鸟博客"
-  #   url: "https://www.daniao.org/feed/"
 
   # - name: "VCB-Studio"
   #   url: "https://vcb-s.com/feed"
