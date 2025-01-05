@@ -725,14 +725,14 @@ specific_RSS:
   - name: "大鸟博客"
     url: "https://www.daniao.org/feed/"
 
-  # - name: ""
-  #   url: ""
+  - name: "纳西妲"
+    url: "https://nahida.im/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "个人工作记录"
+    url: "https://retire50blog.wang/feed"
 
-  # - name: ""
-  #   url: ""
+  - name: "子舒的博客"
+    url: "https://zishu.me/index.xml"
 
   # - name: ""
   #   url: ""
