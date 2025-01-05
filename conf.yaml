@@ -734,8 +734,8 @@ specific_RSS:
   - name: "子舒的博客"
     url: "https://zishu.me/index.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "SkyWT"
+    url: "https://skywt.cn/rss.xml"
 
   # - name: ""
   #   url: ""
