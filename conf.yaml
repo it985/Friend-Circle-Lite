@@ -737,11 +737,11 @@ specific_RSS:
   - name: "SkyWT"
     url: "https://skywt.cn/rss.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "法律小茶馆"
+    url: "https://lawtee.com/index.xml"
 
-  # - name: ""
-  #   url: ""
+  - name: "承世"
+    url: "https://blog.shi.wiki/feed/"
 
   # - name: ""
   #   url: ""
