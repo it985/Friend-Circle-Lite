@@ -9,7 +9,7 @@
 spider_settings:
   enable: true
   json_url: "https://blog.study996.cn/friend.json"
-  article_count: 99999
+  article_count: 1
   merge_result:
     enable: true
     # merge_json_url: "https://fc.study996.cn"
