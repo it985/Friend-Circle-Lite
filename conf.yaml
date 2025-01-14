@@ -98,9 +98,6 @@ specific_RSS:
   - name: "异次元软件世界"
     url: "https://www.iplaysoft.com/feed/atom"
 
-  - name: "异次元软件世界"
-    url: "https://feed.iplaysoft.com/"
-
   - name: "果核剥壳"
     url: "https://www.ghxi.com/feed"
     
