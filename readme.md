@@ -7,15 +7,15 @@
 
 </div>
 
-友链朋友圈简单版，实现了[友链朋友圈](https://github.com/Rock-Candy-Tea/hexo-circle-of-friends)的基本功能，能够定时爬取rss文章并输出有序内容，为了较好的兼容性，输入格式与友链朋友圈的json格式一致，为了轻量化，暂不支持从友链页面自动爬取，下面会附带`hexo-theme-butterfly`主题的解决方案，其他主题可以类比。
+友链朋友圈简单版，实现了[友链朋友圈](https://github.com/Rock-Candy-Tea/hexo-circle-of-friends)的基本功能，能够定时爬取 rss 文章并输出有序内容，为了较好的兼容性，输入格式与友链朋友圈的 json 格式一致，为了轻量化，暂不支持从友链页面自动爬取，下面会附带`hexo-theme-butterfly`主题的解决方案，其他主题可以类比。
 
 ## 开发进度
 
 ### 2024-10-29
 
-* 完善github数据获取，从环境变量中直接获取，配置文件仅用于自部署
-* 限制文章数量，防止因为数量过大导致的api文件加载缓慢，仅保留150左右文章([#23](https://github.com/willow-god/Friend-Circle-Lite/pull/23))
-* 修改action中写错的github_token拼写
+* 完善 github 数据获取，从环境变量中直接获取，配置文件仅用于自部署
+* 限制文章数量，防止因为数量过大导致的 api 文件加载缓慢，仅保留 150 左右文章 ([#23](https://github.com/willow-god/Friend-Circle-Lite/pull/23))
+* 修改 action 中写错的 github_token 拼写
 
 ### 2024-10-07
 
@@ -24,54 +24,54 @@
 
 ### 2024-09-28
 
-* 更新自部署的api地址，统一为all.json，提高js兼容性
-* 美化展示页面UI(@JLinMr)，添加背景图片
-* 优化作者卡片弹窗动效(@JLinMr)
+* 更新自部署的 api 地址，统一为 all.json，提高 js 兼容性
+* 美化展示页面 UI(@JLinMr)，添加背景图片
+* 优化作者卡片弹窗动效 (@JLinMr)
 
 <details>
 <summary>查看更多</summary>
 
 <h3>2024-09-22</h3>
 
-* 修复 #18 提出的，由于rss倒序导致限制抓取错误的问题，改为先全部获取后，按照时间排序，再选择性获取
+* 修复 #18 提出的，由于 rss 倒序导致限制抓取错误的问题，改为先全部获取后，按照时间排序，再选择性获取
 
 <h3>2024-09-05</h3>
 
-* 更新部署方式，将静态文件放到page分支下，主分支不放数据文件
+* 更新部署方式，将静态文件放到 page 分支下，主分支不放数据文件
 * 前后端分离，部署方式不变但更加直观方便
 
 <h3>2024-09-03</h3>
 
-* 添加特定RSS选项，用于指定部分友链特殊RSS地址
-* 更新文档，添加特定RSS选项配置部分
+* 添加特定 RSS 选项，用于指定部分友链特殊 RSS 地址
+* 更新文档，添加特定 RSS 选项配置部分
 
 <h3>2024-08-28</h3>
 
-* 日常维护，修复issue中提出的时间为空导致错误的情况，使用更新时间代替
+* 日常维护，修复 issue 中提出的时间为空导致错误的情况，使用更新时间代替
 
 <h3>2024-08-11</h3>
 
-* 添加服务器部署的情况下，合并github结果的选项
+* 添加服务器部署的情况下，合并 github 结果的选项
 * 由于复杂性，决定将服务和定时抓取分开，使用面板自带进行配置，防止小白无法配置
 * 修改文档，添加自部署部分
 
 <h3>2024-08-03</h3>
 
-* 将自部署分离为API服务和定时爬取
+* 将自部署分离为 API 服务和定时爬取
 * 尝试更加系统的启动脚本
-* 删除server.py中的爬取内容，使用定时任务crontab实现
+* 删除 server.py 中的爬取内容，使用定时任务 crontab 实现
 
 <h3>2024-07-28</h3>
 
 * 自部署添加跨域请求 
 * 修复内存占用异常问题
-* 将html资源分开存放，实现更加美观的页面
+* 将 html 资源分开存放，实现更加美观的页面
 
 <h3>2024-07-26</h3>
 
 * 自部署添加跨域请求 
 * 添加`/rss.xml`，`/feed/`，`feed.xml`接口的爬取，提高兼容性
-* 修复PJAX下会多次出现模态框的问题，并且切换页面不消失
+* 修复 PJAX 下会多次出现模态框的问题，并且切换页面不消失
 * 修复模态框宽度问题，添加日历图标以更加美观
 
 <h3>2024-07-25</h3>
@@ -91,20 +91,20 @@
 
 * [梦爱吃鱼的友链朋友圈](https://blog.bsgun.cn/fcircle/)
 
-* 欢迎在issue中[提交](https://github.com/willow-god/Friend-Circle-Lite/issues/20)以展示你独特的设计！
+* 欢迎在 issue 中[提交](https://github.com/willow-god/Friend-Circle-Lite/issues/20)以展示你独特的设计！
 
 ## 项目介绍
 
-- **爬取文章**: 爬取所有友链的文章，结果放置在根目录的all.json文件中，方便读取并部署到前端。
-- **邮箱推送更新(对作者推送所有友链更新)**: 作者可以通过邮箱订阅所有rss的更新（未来开发）。
-- **issue邮箱订阅(对访客实时推送最新文章邮件)**: 基于`GitHub issue`的博客更新邮件订阅功能，游客可以通过简单的提交`issue`进行邮箱订阅站点更新，删除对应`issue`即可取消订阅。
-- **文件分离**: 将前后端分离，前端文件放在page分支，后端文件放在主分支
+- **爬取文章**: 爬取所有友链的文章，结果放置在根目录的 all.json 文件中，方便读取并部署到前端。
+- **邮箱推送更新 (对作者推送所有友链更新)**: 作者可以通过邮箱订阅所有 rss 的更新（未来开发）。
+- **issue 邮箱订阅 (对访客实时推送最新文章邮件)**: 基于`GitHub issue`的博客更新邮件订阅功能，游客可以通过简单的提交`issue`进行邮箱订阅站点更新，删除对应`issue`即可取消订阅。
+- **文件分离**: 将前后端分离，前端文件放在 page 分支，后端文件放在主分支
 
 ## 特点介绍
 
-* **轻量化**：对比原版友链朋友圈的功能，该友圈功能简洁，去掉了设置和fastAPI的臃肿，仅保留关键内容。
+* **轻量化**：对比原版友链朋友圈的功能，该友圈功能简洁，去掉了设置和 fastAPI 的臃肿，仅保留关键内容。
 * **无数据库**：因为内容较少，我采用`json`直接存储文章信息，减少数据库操作，提升`action`运行效率。
-* **部署简单**：原版友链朋友圈由于功能多，导致部署较为麻烦，本方案仅需简单的部署action即可使用，vercel仅用于部署前端静态页面和实时获取最新内容。
+* **部署简单**：原版友链朋友圈由于功能多，导致部署较为麻烦，本方案仅需简单的部署 action 即可使用，vercel 仅用于部署前端静态页面和实时获取最新内容。
 * **文件占用**：对比原版`4MB`的`bundle.js`文件大小，本项目仅需要`5.50KB`的`fclite.min.js`文件即可轻量的展示到前端。
 
 ## 功能概览
@@ -116,15 +116,15 @@
 * 随机钓鱼
 * 邮箱推送
 * 美观邮箱模板
-* 自部署(2024-08-11添加)
-* 前端单开分支(2024-09-05添加) @CCKNBC
+* 自部署 (2024-08-11 添加)
+* 前端单开分支 (2024-09-05 添加) @CCKNBC
 
-## action部署使用方法
+## action 部署使用方法
 
 ### 前置工作
 
-1. **Fork 本仓库:**
-   点击页面右上角的 Fork 按钮，将本仓库复制到你自己的`GitHub`账号下，仅复刻main分支即可。
+1. **Fork 本仓库：**
+   点击页面右上角的 Fork 按钮，将本仓库复制到你自己的`GitHub`账号下，仅复刻 main 分支即可。
    ![](./static/fork.png)
 
 2. **配置 Secrets:**
@@ -133,19 +133,19 @@
 
    ![](./static/1.png)
    
-3. **配置action权限：**
+3. **配置 action 权限：**
    
-   在设置中，点击`action`，拉到最下面，勾选`Read and write permissions`选项并保存，确保action有读写权限。
+   在设置中，点击`action`，拉到最下面，勾选`Read and write permissions`选项并保存，确保 action 有读写权限。
    
 4. **启用 GitHub Actions:**
    GitHub Actions 已经配置好在仓库的 `.github/workflows/*.yml` 文件中，当到一定时间时将自动执行，也可以手动运行。
-   其中，每个action功能如下：
+   其中，每个 action 功能如下：
    
-   - `friend_circle_lite.yml`实现核心功能，爬取并发送邮箱，需要在Action中启用；
-   - `deal_subscribe_issue.yml`处理固定格式的issue，打上固定标签，评论，并关闭issue；
+   - `friend_circle_lite.yml`实现核心功能，爬取并发送邮箱，需要在 Action 中启用；
+   - `deal_subscribe_issue.yml`处理固定格式的 issue，打上固定标签，评论，并关闭 issue；
    
-5. **设置issue格式：**
-   这个我已经设置好了，你只需要检查issue部分是否有对应格式即可，可以自行修改对应参数以进行自定义。
+5. **设置 issue 格式：**
+   这个我已经设置好了，你只需要检查 issue 部分是否有对应格式即可，可以自行修改对应参数以进行自定义。
 
 ### 配置选项
 
@@ -170,11 +170,11 @@
      
      `article_count`：每个作者留存文章个数。
 
-     `marge_result`：是否合并多个json文件，若为true则会合并指定网络地址和本地地址的json文件并去重
+     `marge_result`：是否合并多个 json 文件，若为 true 则会合并指定网络地址和本地地址的 json 文件并去重
      
      - `enable`：是否启用合并功能，该功能提供与自部署的友链合并功能，可以解决服务器部分国外网站，服务器无法访问的问题
      
-     - `marge_json_path`：请填写网络地址的json文件，用于合并，不带空格！！！
+     - `marge_json_path`：请填写网络地址的 json 文件，用于合并，不带空格！！！
      
    - **邮箱推送功能配置**
      暂未实现，预留用于将每天的友链文章更新推送给指定邮箱。
@@ -202,11 +202,11 @@
      
      `enable`：开启或关闭，默认开启，如果没有配置请关闭。
      
-     `github_username`：github用户名，用来拼接github api地址
+     `github_username`：github 用户名，用来拼接 github api 地址
      
      `github_repo`：仓库名称，作用同上。
      
-     `your_blog_url`：用来定时检测是否有最新文章，请确保你的网站可以被FCLite抓取到
+     `your_blog_url`：用来定时检测是否有最新文章，请确保你的网站可以被 FCLite 抓取到
      
    - **SMTP 配置**
      使用配置中的相关信息实现邮件发送功能。
@@ -231,7 +231,7 @@
 
    - **特定 RSS 配置**
    
-     用于指定特定友链特殊RSS，样例如下：
+     用于指定特定友链特殊 RSS，样例如下：
 
      ```yaml
      specific_RSS:
@@ -247,14 +247,14 @@
 
      可以添加多个，如果不需要也可以置空。
 
-2. **贡献与定制:**
+2. **贡献与定制：**
    欢迎对仓库进行贡献或根据需要进行定制。
 
-**如果你配置正常，那么等action运行一次（可以手动运行）应该就可以在page分支看到结果了，检查一下，如果结果无误，可以继续看下一步**
+**如果你配置正常，那么等 action 运行一次（可以手动运行）应该就可以在 page 分支看到结果了，检查一下，如果结果无误，可以继续看下一步**
 
-### 友圈json生成
+### 友圈 json 生成
 
-**注意，以下可能仅适用于hexo-theme-butterfly或部分类butterfly主题，如果你是其他主题，可以自行适配，理论上只要存在友链数据文件都可以整理为该类型，甚至可以自行整理为对应json格式后放到 `/source` 目录下即可，格式可以参考：`https://blog.qyliu.top/friend.json` **
+**注意，以下可能仅适用于 hexo-theme-butterfly 或部分类 butterfly 主题，如果你是其他主题，可以自行适配，理论上只要存在友链数据文件都可以整理为该类型，甚至可以自行整理为对应 json 格式后放到 `/source` 目录下即可，格式可以参考：`https://blog.qyliu.top/friend.json` **
 
 1. 将以下文件放置到博客根目录：
 
@@ -295,9 +295,9 @@
    node link.js
    ```
 
-   你将会在source文件中发现文件`friend.json`，即为对应格式文件，下面正常hexo三件套即可放置到网站根目录。
+   你将会在 source 文件中发现文件`friend.json`，即为对应格式文件，下面正常 hexo 三件套即可放置到网站根目录。
 
-3. (可选)添加运行命令到脚本中方便执行，在根目录下创建：
+3. (可选) 添加运行命令到脚本中方便执行，在根目录下创建：
 
    ```bash
    @echo off
@@ -308,13 +308,13 @@
 
    地址改成自己的，上传时仅需双击即可完成。
 
-   如果是github action，可以在hexo g脚本前添加即可完整构建，注意需要安装yaml包才可解析yml文件。
+   如果是 github action，可以在 hexo g 脚本前添加即可完整构建，注意需要安装 yaml 包才可解析 yml 文件。
 
 ## 部署静态网站
 
-首先，将该项目部署到vercel，部署到vercel等平台的目的主要是检测仓库变动并实时更新数据，及时获取all.json文件内容。任意平台均可，但是注意，部署的分支为page分支。
+首先，将该项目部署到 vercel，部署到 vercel 等平台的目的主要是检测仓库变动并实时更新数据，及时获取 all.json 文件内容。任意平台均可，但是注意，部署的分支为 page 分支。
 
-1. vercel 部署完成后，检查对应页面，如果页面中没有数据，且 `/all.json` 路径无法访问可能是部署到main分支了，可以通过 `setting-git-Production Branch` ，填写为page并重新进行部署即可
+1. vercel 部署完成后，检查对应页面，如果页面中没有数据，且 `/all.json` 路径无法访问可能是部署到 main 分支了，可以通过 `setting-git-Production Branch` ，填写为 page 并重新进行部署即可
    
    ![](./static/vercel.png)
 
@@ -326,22 +326,22 @@
 
    ![](./static/cloudflare.png)
 
-部署完成后，你将获得一个地址，如果是通过vercel部署的，建议自行绑定域名。
+部署完成后，你将获得一个地址，如果是通过 vercel 部署的，建议自行绑定域名。
 
 检查 `https://example.com/all.json` 是否有数据，如果有，则部署成功。
 
 ## 部署到你的页面
 
-在前端页面的md文件中写入：
+在前端页面的 md 文件中写入：
 
 ```html
 <div id="friend-circle-lite-root"></div>
 <script>
     if (typeof UserConfig === 'undefined') {
         var UserConfig = {
-            // 填写你的fc Lite地址
+            // 填写你的 fc Lite 地址
             private_api_url: 'https://fc.liushen.fun/',
-            // 点击加载更多时，一次最多加载几篇文章，默认20
+            // 点击加载更多时，一次最多加载几篇文章，默认 20
             page_turning_number: 20,
             // 头像加载失败时，默认头像地址
             error_img: 'https://i.p-i.vip/30/20240815-66bced9226a36.webp',
@@ -362,7 +362,7 @@
 
 ### 前置工作
 
-确保你的服务器有定时任务 `crontab` 功能包，一般是linux自带，如果你没有宝塔等可以管理定时任务的面板工具，可能需要你自行了解定时工具并导入，本教程提供了简单的介绍。
+确保你的服务器有定时任务 `crontab` 功能包，一般是 linux 自带，如果你没有宝塔等可以管理定时任务的面板工具，可能需要你自行了解定时工具并导入，本教程提供了简单的介绍。
 
 首先克隆仓库并进入对应路径：
 
@@ -371,40 +371,40 @@ git clone https://github.com/willow-god/Friend-Circle-Lite.git
 cd Friend-Circle-Lite
 ```
 
-由于不存在issue，所以不支持邮箱推送(主要是懒得分类写了，要不然还得从secret中获取密码的功能剥离QAQ)，请将除第一部分抓取以外的功能均设置为false
+由于不存在 issue，所以不支持邮箱推送 (主要是懒得分类写了，要不然还得从 secret 中获取密码的功能剥离 QAQ)，请将除第一部分抓取以外的功能均设置为 false
 
-下载服务相关包，其中 `requirements-server.txt` 是部署API服务所用包， `requirements.txt` 是抓取服务所用包，请均下载一遍。
+下载服务相关包，其中 `requirements-server.txt` 是部署 API 服务所用包， `requirements.txt` 是抓取服务所用包，请均下载一遍。
 
 ```bash
 pip install -r ./requirements.txt
 pip install -r ./server/requirements-server.txt
 ```
 
-### 部署API服务
+### 部署 API 服务
 
-如果环境配置完毕，你可以进入目录路径后直接运行`deploy.sh`脚本启动API服务：
+如果环境配置完毕，你可以进入目录路径后直接运行`deploy.sh`脚本启动 API 服务：
 
 ```bash
 chmod +x ./deploy.sh
 ./deploy.sh
 ```
 
-其中的注释应该是较为详细的，如果部署成功你可以使用以下命令进行测试，如果获取到了首页html内容则成功：
+其中的注释应该是较为详细的，如果部署成功你可以使用以下命令进行测试，如果获取到了首页 html 内容则成功：
 
 ```bash
 curl 127.0.0.1:1223
 ```
 
-这个端口号可以修改，在server.py最后一行修改数字即可，如果你想删除该API服务，可以使用ps找到对应进程并使用Kill命令杀死进程：
+这个端口号可以修改，在 server.py 最后一行修改数字即可，如果你想删除该 API 服务，可以使用 ps 找到对应进程并使用 Kill 命令杀死进程：
 
 ```bash
 ps aux | grep python
 kill -9 [这里填写上面查询结果中对应的进程号]
 ```
 
-### 合并github数据
+### 合并 github 数据
 
-你是不是以为github数据没用了？并不是！因为有很多站长是使用的GitHub page等服务部署的，这种服务可能无法被你的服务器抓取，此时你就需要合并两个的爬取数据。修改第一个配置中的以下部分：
+你是不是以为 github 数据没用了？并不是！因为有很多站长是使用的 GitHub page 等服务部署的，这种服务可能无法被你的服务器抓取，此时你就需要合并两个的爬取数据。修改第一个配置中的以下部分：
 
 ```yaml
 merge_result:
@@ -415,7 +415,7 @@ merge_result:
 
 ### 定时抓取文章
 
-由于原生的crontab可能较为复杂，如果有兴趣可以查看./deploy.sh文件中，屏蔽掉的部分，这里我不会细讲，这里我主要讲解宝塔面板添加定时任务，这样可以最大程度减少内存占用，其他面板服务类似：
+由于原生的 crontab 可能较为复杂，如果有兴趣可以查看./deploy.sh 文件中，屏蔽掉的部分，这里我不会细讲，这里我主要讲解宝塔面板添加定时任务，这样可以最大程度减少内存占用，其他面板服务类似：
 
 ![](./static/baota.png)
 
@@ -426,12 +426,12 @@ cd /www/wwwroot/Friend-Circle-Lite
 python3 run.py
 ```
 
-具体地址可以按照自己的需要进行修改，这样我们就可以做到定时修改文件内容了！然后请求api就是从本地文件中返回所有内容的过程，和爬取是分开的，所以并不影响！
+具体地址可以按照自己的需要进行修改，这样我们就可以做到定时修改文件内容了！然后请求 api 就是从本地文件中返回所有内容的过程，和爬取是分开的，所以并不影响！
 
 ## 问题与贡献
 
 如果遇到任何问题或有建议，请[提交一个 issue](https://github.com/willow-god/Friend-Circle-Lite/issues)。欢迎贡献代码！
 
-## Star增长曲线
+## Star 增长曲线
 
 [![Star History Chart](https://api.star-history.com/svg?repos=willow-god/Friend-Circle-Lite&type=Timeline)](https://star-history.com/#willow-god/Friend-Circle-Lite&Timeline)

@@ -4,7 +4,7 @@ function initialize_fc_lite() {
     // 设置默认配置
     UserConfig = {
         private_api_url: UserConfig?.private_api_url || "", 
-        page_turning_number: UserConfig?.page_turning_number || 20, // 默认20篇
+        page_turning_number: UserConfig?.page_turning_number || 20, // 默认 20 篇
         error_img: UserConfig?.error_img || "https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite@latest/static/favicon.ico" // 默认头像
     };
 
@@ -130,7 +130,7 @@ function initialize_fc_lite() {
             <div class="random-container">
                 <div class="random-container-title">随机钓鱼</div>
                 <div class="random-title">${randomArticle.title}</div>
-                <div class="random-author">作者: ${randomArticle.author}</div>
+                <div class="random-author">作者：${randomArticle.author}</div>
             </div>
             <div class="random-button-container">
                 <a href="#" id="refresh-random-article">刷新</a>

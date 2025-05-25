@@ -90,6 +90,6 @@ async def get_random_article():
         return JSONResponse(content={"error": "Failed to decode JSON"}, status_code=500)
 
 if __name__ == '__main__':
-    # 启动FastAPI应用
+    # 启动 FastAPI 应用
     import uvicorn
     uvicorn.run(app, host='0.0.0.0', port=1223)

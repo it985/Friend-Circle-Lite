@@ -6,16 +6,23 @@ import json
 import os
 
 # 标准化的请求头
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36'
+HEADERS_JSON = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/123.0.0.0 Safari/537.36 "
+        "(Friend-Circle-Lite/1.0; +https://github.com/willow-god/Friend-Circle-Lite)"
+    ),
+    "X-Friend-Circle": "1.0"
 }
+
 
 def extract_emails_from_issues(api_url):
     """
-    从GitHub issues API中提取以[e-mail]开头的title中的邮箱地址。
+    从 GitHub issues API 中提取以 [e-mail] 开头的 title 中的邮箱地址。
 
     参数：
-    api_url (str): GitHub issues API的URL。
+    api_url (str): GitHub issues API 的 URL。
 
     返回：
     dict: 包含所有提取的邮箱地址的字典。
@@ -26,11 +33,11 @@ def extract_emails_from_issues(api_url):
     }
     """
     try:
-        response = requests.get(api_url, headers=headers)
+        response = requests.get(api_url, headers=HEADERS_JSON, timeout=10)
         response.raise_for_status()
         issues = response.json()
     except Exception as e:
-        logging.error(f"无法获取 GitHub issues 数据，错误信息: {e}")
+        logging.error(f"无法获取 GitHub issues 数据，错误信息：{e}")
         return None
 
     email_pattern = re.compile(r'^\[邮箱订阅\](.+)$')

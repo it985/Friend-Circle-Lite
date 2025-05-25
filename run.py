@@ -89,7 +89,7 @@ if config["rss_subscribe"]["enable"]:
             sys.exit(0)
         else:
             logging.info("获取到的邮箱列表为：{email_list}".format(email_list=email_list))
-        # 循环latest_articles，发送邮件
+        # 循环 latest_articles，发送邮件
         for article in latest_articles:
             template_data = {
                 "title": article["title"],
