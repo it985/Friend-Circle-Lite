@@ -359,7 +359,15 @@ def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = N
         return {}, {}
     
     # 处理每个友链
-    result = {"article_data": []}
+    result = {
+        "article_data": [],
+        "statistical_data": {
+            "friends_num": len(friends),
+            "active_num": 0,
+            "article_num": 0,
+            "last_updated_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+    }
     lost_friends = {"lost_friends": []}
     
     # 创建线程池
@@ -377,6 +385,7 @@ def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = N
                 friend_result = future.result()
                 if friend_result:
                     result["article_data"].extend(friend_result)
+                    result["statistical_data"]["active_num"] += 1
                 else:
                     lost_friends["lost_friends"].append({
                         "name": friend["name"],
@@ -393,6 +402,9 @@ def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = N
     
     # 按时间排序
     result["article_data"].sort(key=lambda x: x.get("time", ""), reverse=True)
+    
+    # 更新文章数量
+    result["statistical_data"]["article_num"] = len(result["article_data"])
     
     logging.info(f"数据处理完成，成功获取 {len(result['article_data'])} 篇文章，失败 {len(lost_friends['lost_friends'])} 个友链")
     return result, lost_friends
