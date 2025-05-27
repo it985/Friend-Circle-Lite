@@ -144,8 +144,9 @@ def parse_feed(url, session, count=5, blog_url=''):
             'articles': []
         }
         
-        for _ , entry in enumerate(feed.entries):
-            
+        # 预处理所有文章，包括时间解析
+        articles_with_time = []
+        for entry in feed.entries:
             if 'published' in entry:
                 published = format_published_time(entry.published)
             elif 'updated' in entry:
@@ -167,12 +168,18 @@ def parse_feed(url, session, count=5, blog_url=''):
                 'summary': entry.summary if 'summary' in entry else '',
                 'content': entry.content[0].value if 'content' in entry and entry.content else entry.description if 'description' in entry else ''
             }
-            result['articles'].append(article)
+            
+            # 将解析后的时间对象和文章一起存储
+            try:
+                time_obj = datetime.strptime(published, '%Y-%m-%d %H:%M') if published else datetime.min
+                articles_with_time.append((time_obj, article))
+            except ValueError:
+                # 如果时间解析失败，使用最小时间
+                articles_with_time.append((datetime.min, article))
         
-        # 对文章按时间排序，并只取前 count 篇文章
-        result['articles'] = sorted(result['articles'], key=lambda x: datetime.strptime(x['published'], '%Y-%m-%d %H:%M'), reverse=True)
-        if count < len(result['articles']):
-            result['articles'] = result['articles'][:count]
+        # 按时间排序，并只取前 count 篇文章
+        articles_with_time.sort(key=lambda x: x[0], reverse=True)
+        result['articles'] = [article for _, article in articles_with_time[:count]]
         
         return result
     except Exception as e:
@@ -186,7 +193,6 @@ def parse_feed(url, session, count=5, blog_url=''):
 
 def replace_non_domain(link: str, blog_url: str) -> str:
     """
-    暂未实现
     检测并替换字符串中的非正常域名部分（如 IP 地址或 localhost），替换为 blog_url。
     替换后强制使用 https，且考虑 blog_url 尾部是否有斜杠。
 
@@ -194,10 +200,6 @@ def replace_non_domain(link: str, blog_url: str) -> str:
     :param blog_url: 替换为的博客地址
     :return: 替换后的地址字符串
     """
-    
-    # 提取 link 中的路径部分，无需协议和域名
-    # path = re.sub(r'^https?://[^/]+', '', link)
-    # print(path)
     
     try:
         parsed = urlparse(link)
@@ -238,7 +240,7 @@ def process_friend(friend, session, count, specific_RSS=[]):
         logging.info(f"“{name}”的博客“ {blog_url} ”为特定 RSS 源“ {feed_url} ”")
     else:
         feed_type, feed_url = check_feed(blog_url, session)
-        logging.info(f"“{name}”的博客“ {blog_url} ”的 feed 类型为“{feed_type}”, feed 地址为“ {feed_url} ”")
+        logging.info(f"“{name}”的博客“ {blog_url} ”的 feed 类型为"{feed_type}", feed 地址为"{feed_url}"")
 
     if feed_type != 'none':
         feed_info = parse_feed(feed_url, session, count, blog_url)
