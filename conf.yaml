@@ -9,7 +9,7 @@
 spider_settings:
   enable: true
   json_url: "https://blog.study996.cn/friend.json"
-  article_count: 1
+  article_count: 5
   merge_result:
     enable: true
     # merge_json_url: "https://fc.study996.cn"
@@ -62,27 +62,18 @@ smtp:
 #   url:                指定的 RSS 地址
 specific_RSS:
 
-  - name: "My YouTube Rss"
-    url: "https://it985.github.io/feed-read/feed.atom"
-
   - name: "阮一峰的网络日志"
     url: "https://feeds.feedburner.com/ruanyifeng"
 
   - name: "阮一峰的网络日志"
     url: "https://www.ruanyifeng.com/blog/atom.xml"
 
-  - name: "刘郎阁"
-    url: "https://vjo.cc/feed/"
-
   - name: "达叔"
     url: "https://www.uncleda.com/feed/"
-    
+
   - name: "熊猫不是猫 QAQ"
     url: "https://panda995.xyz/feed/"
 
-  - name: "子夜松声"
-    url: "https://xyzbz.cn/feed/atom/"
-    
   - name: "子舒的博客"
     url: "https://zishu.me/index.xml"
 
@@ -94,22 +85,16 @@ specific_RSS:
 
   - name: "大象笔记"
     url: "https://www.sunzhongwei.com/feed"
- 
+
   - name: "徐徐爱 coding"
     url: "https://www.xu69.com/rss.xml"
-    
+
   - name: "莫比乌斯"
     url: "https://onojyun.com/feed/"
 
   - name: "三无青年"
     url: "https://www.duanxiansen.com/feed"
-    
-  - name: "海若博客"
-    url: "https://hyruo.com/index.xml"
-    
-  - name: "GTX690 战术核显卡导弹"
-    url: "https://www.nekopara.uk/feed/"
-    
+
   - name: "CMLiussss Blog"
     url: "https://blog.cmliussss.com/atom.xml"
 
@@ -119,14 +104,8 @@ specific_RSS:
   - name: "Dongdong 日志"
     url: "https://ddw2019.com/?feed=rss2"
 
-  - name: "阿猫"
-    url: "https://ameow.xyz/feed.xml"
-
   - name: "刘悦"
     url: "https://v3u.cn/sitemap.xml"
-
-  - name: "二丫讲梵"
-    url: "https://wiki.eryajf.net/rss.xml"
 
   - name: "老胡的周刊"
     url: "https://weekly.howie6879.com/rss/rss.xml"
@@ -137,9 +116,6 @@ specific_RSS:
   - name: "卡卡罗特"
     url: "https://blog.share888.top/rss.xml"
 
-  - name: "Bboysoul's Blog"
-    url: "https://www.bboy.app/atom.xml"
-
   - name: "龙哥"
     url: "https://long.ge/feed"
 
@@ -148,19 +124,10 @@ specific_RSS:
 
   - name: "燕渡寒潭"
     url: "https://hisherry.com/feed/"
-    
+
   - name: "石律读案"
     url: "https://www.itscase.cn/feed"
 
-  - name: "Airmole"
-    url: "https://notebook.airmole.net/feed.xml"
-
-  - name: "GGBond"
-    url: "https://pic.16854088.xyz/feed.xml"
-    
-  - name: "ManyACG - ACG 美图精选收集"
-    url: "https://manyacg.top/atom.xml"
-    
   - name: "不良林"
     url: "https://bulianglin.com/feed/"
 
@@ -170,109 +137,17 @@ specific_RSS:
   - name: "剑二十七"
     url: "https://www.jian27.com/feed/"
 
-
-
-  - name: "胴体的诱惑"
-    url: "https://dongti.blog.2nt.com/?xml"
-
-  - name: "樱糖 [YINGTALL]"
-    url: "https://yingtall.com/feed"
-
-  - name: "福利兔"
-    url: "https://www.fulitu.cc/feed/"
-    
-  - name: "集图录·集图鹿"
-    url: "https://www.jitulu.com/feed/"
-    
-  - name: "玄龙网·微图录"
-    url: "https://www.xuanloog.com/feed/"
-
-  - name: "BDSM Home"
-    url: "https://www.bdsmcn.com/feed"
-
-  - name: "NiceGirl"
-    url: "https://nicegirl.in/atom.xml"
-    
-  - name: "8k Cosplay Zone"
-    url: "https://www.8kcosplay.com/feed/"
-
-  - name: "福利吧"
-    url: "https://fuliba2025.net/feed"
-
-  - name: "ASMR 第一站"
-    url: "https://asmr1.com/feed"
-
-  - name: "ASMR 视频网"
-    url: "https://www.asmrv.com/feed"
-    
-  - name: "爱上 ASMR"
-    url: "https://www.asasmr4.com/feed"
-
-  - name: "语斋物语"
-    url: "https://www.xzwy.cc/feed"
-
-  - name: "秀网阁;在线看美图"
-    url: "https://w1.xwang01.vip/feed"
-    
-  - name: "奈思 ASMR"
-    url: "https://www.nicezm.cn/feed"
-
-  - name: "助眠啦"
-    url: "https://asmrla.com/feed"
-
-  - name: "ASMR 助眠站"
-    url: "https://www.licailun.com/feed"
-
-  - name: "小贱贱吧"
-    url: "https://www.xiaojianjian.net/feed"
-  
-  - name: "IACG.RIP"
-    url: "https://b.iacg.site/feed"
-
   - name: "Ryan Wang's Blog"
     url: "https://ryanc.cc/rss.xml"
 
   - name: "DigVPS"
     url: "https://digvps.com/rss.xml"
 
-  - name: "Hello BTU"
-    url: "https://ty.404p.eu.org/index.php/feed/atom/"
-
-  - name: "Mesyr"
-    url: "https://zhhh.uk/feed/"
-
-  - name: "BestGirlSexy"
-    url: "https://bestgirlsexy.com/feed/"
-
-  - name: "暗影图集"
-    url: "https://www.anying.cc/feed"
-
-  - name: "图片壁纸"
-    url: "https://dounimei.akmn.top/feed/"
-  
-  - name: "61"
-    url: "https://61.life/feed.xml"
-
-  - name: "忆光博客"
-    url: "https://blog.eray.cc/rss.xml"
-
-  - name: "主机圈"
-    url: "https://vpsloc.com/feed"
-  
   - name: "大鸟博客"
     url: "https://www.daniao.org/feed/"
 
-  - name: "纳西妲"
-    url: "https://nahida.im/rss.xml"
-
-  - name: "个人工作记录"
-    url: "https://retire50blog.wang/feed"
-
-  - name: "法律小茶馆"
-    url: "https://lawtee.com/index.xml"
-
-  - name: "玖涯博客"
-    url: "https://blog.nineya.com/atom.xml"
+  - name: "主机圈"
+    url: "https://vpsloc.com/feed"
 
   - name: "小众软件"
     url: "https://www.appinn.com/feed/"
@@ -282,12 +157,6 @@ specific_RSS:
 
   - name: "Kevin's"
     url: "https://www.shephe.com/feed/"
-
-  - name: "人生若只如初见"
-    url: "https://www.wxy97.com/rss.xml"
-
-  - name: "半方池水半方田"
-    url: "https://uuanqin.top/atom.xml"
 
   - name: "从 01 开始"
     url: "https://www.peterjxl.com/rss.xml"
@@ -307,12 +176,6 @@ specific_RSS:
   - name: "维基萌"
     url: "https://www.wikimoe.com/rss"
 
-  - name: "LiuShen's Blog"
-    url: "https://blog.liushen.fun/atom.xml"
-
-  - name: "陶小桃 Blog"
-    url: "https://www.52txr.cn/feed/"
-
   - name: "流浪天下"
     url: "https://maie.name/feed"
 
@@ -325,14 +188,8 @@ specific_RSS:
   - name: "杜老师说"
     url: "https://dusays.com/atom.xml"
 
-  - name: "小小笔记大大用处"
-    url: "https://blog.uptoz.cn/rss.xml"
-
-  - name: "满心记"
-    url: "https://qq.mba/rss.xml"
-
   - name: "webjing"
-    url: "https://blog.wenjing.cn/rss.xml"
+    url: "https://www.wenjing.cn/rss.xml"
 
   - name: "SimonSu"
     url: "https://simonsu.cn/rss/"
@@ -341,24 +198,19 @@ specific_RSS:
     url: "https://blog.allwens.work/feed"
 
   - name: "Leoon"
-    url: "hhttps://www.leoon.cn/feed.xml"
+    url: "https://www.leoon.cn/feed.xml"
 
   - name: "慕雪的寒舍"
     url: "https://blog.musnow.top/atom.xml"
   
   - name: "尺宅杂记"
     url: "http://www.qncd.com/?feed=rss2"  
- 
-
-  
-  - name: "Chnci"
-    url: "https://www.chnci.cc/feed/"
-
-  - name: "森鹿语 – 探索充满奇幻冒险的二次元世界"
-    url: "https://www.sluyu.com/feed/"
 
   - name: "Zkeq の Coding 日志"
     url: "https://icodeq.com/feed.xml"
+
+  - name: "Chnci"
+    url: "https://www.chnci.cc/feed/"
 
   - name: "勿埋我心"
     url: "https://www.skyqian.com/feed/"
@@ -390,23 +242,11 @@ specific_RSS:
   - name: "App 热"
     url: "https://apphot.cc/feed"
 
-  - name: "回忆航线"
-    url: "https://kunkunyu.com/rss.xml"
-    
   - name: "sky 博客"
     url: "https://www.5ee.net/rss.xml"
 
   - name: "ZLX STUDIO"
     url: "https://blog.iooioio.com/rss.xml"
-
-  - name: "新都在"
-    url: "https://blog.xindu.site/rss.xml"
-    
-  - name: "yuhua.HK"
-    url: "http://yuhua.hk/?feed=rss2"
-    
-  - name: "柳意梧情博客"
-    url: "https://lywq.muyin.site/rss.xml"  
 
   - name: "無名小栈"
     url: "https://blog.imsyy.top/rss.xml"
@@ -416,18 +256,12 @@ specific_RSS:
 
   - name: "Hi, DIYgod"
     url: "https://diygod.cc/feed"
-  
-  - name: "小李同学"
-    url: "https://blog.xxfer.cn/rss.xml"
-    
+
   - name: "Fgaoxing"
     url: "https://www.yt-blog.top/atom.xml"
 
-  - name: "夏柔"
-    url: "https://www.wpon.cn/feed"
-
-  - name: "浅浅时光"
-    url: "https://www.imuu.cn/feed"
+  - name: "小李同学"
+    url: "https://blog.xxfer.cn/rss.xml"
 
   - name: "Never7"
     url: "https://neverup.cn/index.xml" 
@@ -435,23 +269,17 @@ specific_RSS:
   - name: "纸鹿本鹿"
     url: "https://blog.zhilu.cyou/atom.xml"
 
-  - name: "Handsome 's Blog"
-    url: "https://www.lik.cc/rss.xml"
-
   - name: "叁月柒の小世界"
     url: "https://sanyue.site/atom.xml"
 
   - name: "哈喽！林墨白"
     url: "https://blog.lmb520.cn/feed/"
-    
+
   - name: "别碰我的镜头盖"
     url: "https://blog.bornforthis.cn/atom.xml"
 
   - name: "东方月初"
     url: "https://hexo.200038.xyz/atom.xml"
-
-  - name: "Spark’s Blog"
-    url: "https://www.aspark.cc/atom.xml"
 
   - name: "Leonus"
     url: "https://blog.leonus.cn/atom.xml"
@@ -464,334 +292,25 @@ specific_RSS:
 
   - name: "一揽芳华"
     url: "https://www.xxjstl.cn/rss.xml"
-   
-  - name: "杨杨得亿"
-    url: "https://yangpin.link/rss.xml"
 
-  - name: "Clay 的技术空间"
-    url: "https://www.techgrow.cn/atom.xml"
-    
-  - name: "博客园 - 王陸"
-    url: "https://feed.cnblogs.com/blog/u/421388/rss/"
+  - name: "张洪 Heo"
+    url: "https://blog.zhheo.com/atom.xml"
 
-  - name: "又见苍岚"
-    url: "https://www.zywvvd.com/atom.xml"
+  - name: "LQBBY"
+    url: "https://www.lqbby.com/rss.xml"
 
-  - name: "Java 学习之道"
-    url: "https://www.mmzsblog.cn/rss.xml"
-    
-  - name: "目的地-Destination"
-    url: "https://chrison.cn/feed/atom/"
-    
-  - name: "故事的程序猿"
-    url: "https://blog.lichenghao.cn/article/rss.xml"
+  - name: "Tianli's Blog"
+    url: "https://blog.tianli0.top/rss.xml"
 
-  - name: "前端开发笔记"
-    url: "https://i-fanr.com/feed/"
-
-  - name: "2B 博客"
-    url: "https://blog.2broear.com/feed"
-    
-  - name: "甜欣屋"
-    url: "https://tcxx.info/feed"
-
-  - name: "悠久的小宝库"
-    url: "https://u9baoku.xyz/feed"
-
-  - name: "夜法之书"
-    url: "https://cfblog.17lai.site/atom.xml"  
-
-  - name: "sleele"
-    url: "https://sleele.com/feed/"
-    
-  - name: "阿浩の博客"
-    url: "https://ahao8.top/atom.xml"
-
-  - name: "S T C H E N G"
-    url: "https://cheng.st/atom.xml"
-
-  - name: "TopsTip"
-    url: "https://topstip.com/feed/"
-    
-  - name: "CHEGVA"
-    url: "https://chegva.com/feed/"
-
-  - name: "小新笔记坊"
-    url: "https://blog.xxbjf.com/rss.xml"
-
-  - name: "云心怀鹤"
-    url: "https://bluehe.cn/rss.xml"
-    
-  - name: "宝塔迷"
-    url: "https://www.baota.me/feed/rss/"
-    
-  - name: "青山小站"
-    url: "https://blog.yanqingshan.com/feed/"
-
-  - name: "运维小弟"
-    url: "https://www.srebro.cn/rss.xml"
-
-  - name: "貓魚"
-    url: "https://2cat.net/feed/"
-    
-  - name: "趣记博客"
-    url: "https://www.quji.org/feed"
-
-  - name: "缙哥哥"
-    url: "https://www.dujin.org/feed"
-
-  - name: "懋和道人"
-    url: "https://www.dao.js.cn/feed.php" 
-
-  - name: "Rolen"
-    url: "https://rolen.wiki/feed/"
-
-  - name: "zzxworld"
-    url: "https://www.zzxworld.com/feed.xml"
-    
-  - name: "水清无鱼"
-    url: "https://bosir.cn/feed/"
-    
-  - name: "响石潭"
-    url: "https://www.xiangshitan.com/feed.php"
-
-  - name: "九一牛头人小站"
-    url: "https://91ntr.cn/feed/"
-    
-  - name: "Windows Blog"
-    url: "https://blogs.windows.com/feed/"
-
-  - name: "P3TERX ZONE"
-    url: "https://p3terx.com/feed"
+  - name: "不住色"
+    url: "https://www.buzhuse.com/index.xml"
   
-  - name: "小众软件官方论坛 - 最新帖子"
-    url: "https://meta.appinn.net/posts.rss"
-    
-  - name: "小众软件官方论坛 - 最新话题"
-    url: "https://meta.appinn.net/latest.rss"
+  - name: "Vind Art"
+    url: "https://vind.li/rss.php"
 
-  - name: "两双筷子"
-    url: "https://www.dbkuaizi.com/feed/"
-    
-  - name: "打工人日志"
-    url: "https://www.jobcher.com/index.xml"
-    
-  - name: "六月是只猫"
-    url: "https://www.lyszm.com/feed/"
+  - name: "知行博客"
+    url: "https://zxalive.com/index.xml"
 
-  - name: "姓王者的博客"
-    url: "https://xingwangzhe.fun/atom.xml"
-
-  - name: "kshao 前端知识记录"
-    url: "https://ksh7.com/atom.xml"
-
-  - name: "Pi3's Notes"
-    url: "https://blog.pi3.fun/index.xml"
-    
-  - name: "墨海拾贝"
-    url: "https://mohai.us.kg/index.xml"
-
-  - name: "笑招日记"
-    url: "https://blog.kanes.top/feed"
-
-  - name: "六月墨语"
-    url: "https://blog.june.ink/feed"
-
-  - name: "虹线"
-    url: "https://1q43.blog/feed/"
-
-  - name: "大头钉的小小 blog"
-    url: "https://luckyting.top/index.php/feed/"
-    
-  - name: "夏末笔记"
-    url: "https://www.xiamm.com/feed"
-
-  - name: "share1223"
-    url: "https://share1223.com/feed/"
-
-  - name: "半日闲"
-    url: "https://xiaoa.me/feed/"
-
-  - name: "吃猫的鱼"
-    url: "https://www.fish9.cn/feed/"
-    
-  - name: "鲁鲁和非人类"
-    url: "https://www.myhelen.cn/feed/"
-    
-  - name: "蜡客生活系"
-    url: "https://www.lknc.vip/feed/"
-
-  - name: "三毛笔记"
-    url: "https://aboss.top/feed/"
-    
-  - name: "vwo50 博客站"
-    url: "https://vwo50.club/feed"
-
-  - name: "Yenshthen 研学绅"
-    url: "https://study.imold.wang/feed/"
-    
-  - name: "皮皮社"
-    url: "https://www.pipishe.com/feed/"
-    
-  - name: "程序员鸡皮"
-    url: "https://www.xvzhu.cn/feed/"
-
-  - name: "懂您的 AI 未来站"
-    url: "https://www.aihubpro.cn/feed"
-
-  - name: "XingJi の Blog"
-    url: "https://love.xingji.fun/atom.xml"
-    
-  - name: "奥利弗的狗窝"
-    url: "https://www.aolifu.org/rss/feed.xml"
-
-  - name: "algorithmnote"
-    url: "https://www.algorithmnote.cn/index.php/feed/atom/"
-
-  - name: "泠泫凝"
-    url: "https://lxnchan.cn/atom.xml"
-  
-  - name: "码霸霸"
-    url: "https://blog.lupf.cn/rss.xml"
-
-  - name: "HealeJean 的梦想博客"
-    url: "http://blog.healerjean.com/atom.xml"
-
-  - name: "咕咕咕的小破站"
-    url: "https://cooooing.github.io/atom.xml"
-
-  - name: "晓果冻"
-    url: "https://www.chenmx.net/rss.xml"
-
-  - name: "新逸 Cary"
-    url: "https://blog.xinac.cn/atom.xml"
-
-  - name: "清茶书香"
-    url: "https://hibennett.cn/rss.xml"
-
-  - name: "Meowrain の Blog"
-    url: "https://meowrain.cn/atom.xml"
-
-  - name: "wangxiaojiang"
-    url: "https://wangxiaojiang.cn/index.php/feed/"
-
-  - name: "crossoverJie's Blog"
-    url: "https://crossoverjie.top/atom.xml"
-
-  - name: "邱少羽梦"
-    url: "https://www.qiushaocloud.top/rss.xml"
-
-  - name: "芈亓的 Blog"
-    url: "https://lx95.top/rss.xml"
-
-  - name: "简言之"
-    url: "https://jwt1399.top/atom.xml"
-
-  - name: "宾否"
-    url: "https://www.binfoo.com/feed"
-  
-  - name: "Song`s Blog"
-    url: "https://songxwn.com/atom.xml"
-
-  - name: "Akara Blog"
-    url: "https://messiahhh.github.io/blog/blog/rss.xml"
-
-  - name: "静觅"
-    url: "https://cuiqingcai.com/atom.xml"
-
-  - name: "韩涛博客"
-    url: "https://www.hantaosec.com/feed/"
-
-  - name: "涅槃博客"
-    url: "https://niepan.org/feed/atom/"
-
-  - name: "宏尘极客"
-    url: "https://www.hcjike.com/rss.xml"
-
-  - name: "Wenbin's blog"
-    url: "https://www.zzzwb.com/atom.xml"
-
-  - name: "Anye の小站"
-    url: "https://www.anye.xyz/rss.xml"
-
-  - name: "沉默の大多数"
-    url: "https://gyhwd.top/rss.xml"
-
-  - name: "阿狸鹿丫"
-    url: "https://blog.aliluya.com/rss.xml"
-  
-  - name: "DP 次元美化"
-    url: "https://mh.dp712.com/feed"
-
-  - name: "浅时光博客"
-    url: "https://www.dqzboy.com/feed"
-
-  - name: "个人笔记"
-    url: "https://www.8uid.com/feed/"
-  
-  - name: "御宅次元"
-    url: "https://flzzz.com/feed"
-
-  - name: "枫の主题社"
-    url: "https://winmoes.com/feed"
-
-  - name: "霜狐科技屋"
-    url: "https://www.frostfox.cn/feed"
-
-  - name: "湘铭`Blog"
-    url: "https://xiangming.site/feed/"
-
-  - name: "呓语梦轩"
-    url: "https://blog.awaae001.top/atom.xml"
-
-  - name: "Oskyla 烹茶室"
-    url: "https://frytea.com/feed/"
-
-  - name: "小和的雪糕铺"
-    url: "https://52he.cc/rss.xml"
-
-  - name: "千鹤喵绫"
-    url: "https://www.xnijika.com/feed/"
-
-  - name: "EKsumic's Blog"
-    url: "https://www.v2know.com/rss/"
-
-  - name: "一世繁华"
-    url: "https://blog.hantaotao.top/feed/"
-
-  - name: "小鹿生活志"
-    url: "https://www.t223.top/feed/"
-
-  - name: "设计星球"
-    url: "https://sjpla.com/feed"
-
-  - name: "频率"
-    url: "https://pinlyu.com/atom.xml"
-
-  - name: "弈趣極光"
-    url: "https://ejsoon.win/feed/"
-
-  - name: "廿壴博客"
-    url: "https://blog.ganxb2.com/rss/atom.xml"
-
-  - name: "阿锋的小宇宙"
-    url: "https://feng.pub/feed"
-
-  - name: "SkyWT"
-    url: "https://skywt.cn/rss.xml"
-
-  - name: "承世"
-    url: "https://blog.shi.wiki/feed/"
-
-  - name: "路由器交流"
-    url: "https://www.acwifi.net/feed"
-
-  - name: "月光海岸"
-    url: "https://www.manction.com/atom.xml"
-
-  - name: "ahhhhfs"
-    url: "https://www.ahhhhfs.com/feed/" 
-   
   - name: "铭心石刻"
     url: "https://blog.kouseki.cn/rss.xml"
 
@@ -813,50 +332,36 @@ specific_RSS:
   - name: "青桔气球"
     url: "https://blog.qjqq.cn/atom.xml"
 
-  - name: "HomeLab Dolingou"
-    url: "https://www.dolingou.com/rss/feed.xml"
+  - name: "月光海岸"
+    url: "https://www.manction.com/atom.xml"
 
-  - name: "白熊阿丸的小屋"
-    url: "https://blog.bxaw.name/feed/"
+  - name: "承世"
+    url: "https://blog.shi.wiki/feed/"
 
-  - name: "Dabenshi Blog"
-    url: "https://dabenshi.cn/rss.xml"
+  - name: "Anye の小站"
+    url: "https://www.anye.xyz/rss.xml"
 
-  - name: "牛牛技术客栈"
-    url: "https://www.nnjskz.cn/rss.xml"
+  - name: "吃猫的鱼"
+    url: "https://www.fish9.cn/feed/"
 
-  - name: "夏海芭的博客"
-    url: "https://xiahaiba.com/index.php/feed/"
+  - name: "响石潭"
+    url: "https://www.xiangshitan.com/feed.php"
 
-  - name: "星宇次元美图"
-    url: "https://picyu.cn/index.php/feed/"
-  
-  - name: "雨月空间站"
-    url: "https://www.mintimate.cn/atom.xml"
+#  博客
+  # - name: "杨杨得亿"
+  #   url: "https://yangpin.link/rss.xml"
 
-  - name: "知行博客"
-    url: "https://zxalive.com/index.xml"
+  # - name: "夏柔"
+  #   url: "https://www.wpon.cn/feed"
 
-  - name: "LQBBY"
-    url: "https://www.lqbby.com/rss.xml"
+  # - name: "浅浅时光"
+  #   url: "https://www.imuu.cn/feed"
 
-  - name: "Tianli's Blog"
-    url: "https://blog.tianli0.top/rss.xml"
-
-  - name: "❖星港◎Star☆"
-    url: "https://blog.starsharbor.com/atom.xml"
-
-  - name: "张洪 Heo"
-    url: "https://blog.zhheo.com/atom.xml"
-
-  - name: "Handsome"
-    url: "https://www.lik.cc/rss.xml"
-
-  - name: "不住色"
-    url: "https://www.buzhuse.com/index.xml"
-  
-  - name: "Vind Art"
-    url: "https://vind.li/rss.php"  
+  # - name: "新都在"
+  #   url: "https://blog.xindu.site/rss.xml"
+    
+  # - name: "yuhua.HK"
+  #   url: "http://yuhua.hk/?feed=rss2"
 
   # - name: "寻梦收藏馆"
   #   url: "https://blog.20000216.xyz/feed.xml"
@@ -935,3 +440,111 @@ specific_RSS:
 
   # - name: "葱苓 sama"
   #   url: "https://blog.ciraos.top/feed.xml"  
+
+
+# 资讯论坛
+
+  # - name: "My YouTube Rss"
+  #   url: "https://it985.github.io/feed-read/feed.atom"
+    
+  # - name: "海若博客"
+  #   url: "https://hyruo.com/index.xml"
+
+  # - name: "Bboysoul's Blog"
+  #   url: "https://www.bboy.app/atom.xml"
+
+  # - name: "Airmole"
+  #   url: "https://notebook.airmole.net/feed.xml"
+
+  # - name: "GGBond"
+  #   url: "https://pic.16854088.xyz/feed.xml"
+
+  # - name: "ManyACG - ACG 美图精选收集"
+  #   url: "https://manyacg.top/atom.xml"
+
+  # - name: "胴体的诱惑"
+  #   url: "https://dongti.blog.2nt.com/?xml"
+
+  # - name: "樱糖 [YINGTALL]"
+  #   url: "https://yingtall.com/feed"
+
+  # - name: "福利兔"
+  #   url: "https://www.fulitu.cc/feed/"
+    
+  # - name: "集图录·集图鹿"
+  #   url: "https://www.jitulu.com/feed/"
+    
+  # - name: "玄龙网·微图录"
+  #   url: "https://www.xuanloog.com/feed/"
+
+  # - name: "BDSM Home"
+  #   url: "https://www.bdsmcn.com/feed"
+
+  # - name: "NiceGirl"
+  #   url: "https://nicegirl.in/atom.xml"
+    
+  # - name: "8k Cosplay Zone"
+  #   url: "https://www.8kcosplay.com/feed/"
+
+  # - name: "福利吧"
+  #   url: "https://fuliba2025.net/feed"
+
+  # - name: "ASMR 第一站"
+  #   url: "https://asmr1.com/feed"
+
+  # - name: "ASMR 视频网"
+  #   url: "https://www.asmrv.com/feed"
+    
+  # - name: "爱上 ASMR"
+  #   url: "https://www.asasmr4.com/feed"
+
+  # - name: "语斋物语"
+  #   url: "https://www.xzwy.cc/feed"
+
+  # - name: "秀网阁;在线看美图"
+  #   url: "https://w1.xwang01.vip/feed"
+    
+  # - name: "奈思 ASMR"
+  #   url: "https://www.nicezm.cn/feed"
+
+  # - name: "助眠啦"
+  #   url: "https://asmrla.com/feed"
+
+  # - name: "ASMR 助眠站"
+  #   url: "https://www.licailun.com/feed"
+
+  # - name: "小贱贱吧"
+  #   url: "https://www.xiaojianjian.net/feed"
+  
+  # - name: "IACG.RIP"
+  #   url: "https://b.iacg.site/feed"
+
+  # - name: "Hello BTU"
+  #   url: "https://ty.404p.eu.org/index.php/feed/atom/"
+
+  # - name: "Mesyr"
+  #   url: "https://zhhh.uk/feed/"
+
+  # - name: "BestGirlSexy"
+  #   url: "https://bestgirlsexy.com/feed/"
+
+  # - name: "暗影图集"
+  #   url: "https://www.anying.cc/feed"
+
+  # - name: "图片壁纸"
+  #   url: "https://dounimei.akmn.top/feed/"
+  
+  # - name: "61"
+  #   url: "https://61.life/feed.xml"
+
+  # - name: "忆光博客"
+  #   url: "https://blog.eray.cc/rss.xml"
+
+  # - name: "纳西妲"
+  #   url: "https://nahida.im/rss.xml"
+
+  # - name: "个人工作记录"
+  #   url: "https://retire50blog.wang/feed"
+
+  # - name: "森鹿语 – 探索充满奇幻冒险的二次元世界"
+  #   url: "https://www.sluyu.com/feed/"
