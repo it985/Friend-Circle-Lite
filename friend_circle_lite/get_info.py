@@ -254,17 +254,21 @@ def replace_non_domain(link: str, blog_url: str) -> str:
         logging.warning(f"替换链接时出错：{link}, error: {e}")
         return link
 
-def process_friend(friend: Dict[str, str], specific_RSS: List[Dict[str, str]] = None, count: int = 5) -> List[Dict[str, Any]]:
+def process_friend(friend: Dict[str, str], specific_RSS: List[Dict[str, str]] = None, count: int = 5, session: requests.Session = None) -> List[Dict[str, Any]]:
     """
     处理单个友链
     
     :param friend: 友链信息
     :param specific_RSS: 特定 RSS 配置列表
     :param count: 获取的文章数量
+    :param session: 用于请求的会话对象
     :return: 文章列表
     """
     if specific_RSS is None:
         specific_RSS = []
+    
+    if session is None:
+        session = create_session()
     
     name = friend.get("name", "未知")
     link = friend.get("link", "")
@@ -293,8 +297,8 @@ def process_friend(friend: Dict[str, str], specific_RSS: List[Dict[str, str]] = 
     
     # 如果没有特定 RSS 配置或处理失败，尝试从博客获取
     try:
-        feed_url = check_feed(link)
-        if feed_url:
+        feed_type, feed_url = check_feed(link, session)
+        if feed_type != 'none':
             feed = feedparser.parse(feed_url)
             if feed.entries:
                 articles = []
@@ -338,9 +342,12 @@ def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = N
     
     logging.info(f"开始获取数据，特定 RSS 配置数量: {len(specific_RSS)}")
     
+    # 创建会话
+    session = create_session()
+    
     # 获取友链数据
     try:
-        response = requests.get(json_url, timeout=(3, 5), verify=False)
+        response = session.get(json_url, timeout=(3, 5), verify=False)
         response.raise_for_status()
         friends_data = response.json()
         
@@ -374,7 +381,7 @@ def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = N
     with ThreadPoolExecutor(max_workers=30) as executor:
         # 提交所有任务
         future_to_friend = {
-            executor.submit(process_friend, friend, specific_RSS, count): friend
+            executor.submit(process_friend, friend, specific_RSS, count, session): friend
             for friend in friends
         }
         
