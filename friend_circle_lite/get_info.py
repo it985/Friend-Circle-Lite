@@ -7,6 +7,10 @@ from zoneinfo import ZoneInfo
 import requests
 import feedparser
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+import time
+from functools import lru_cache
 
 # 标准化的请求头
 HEADERS_JSON = {
@@ -33,7 +37,32 @@ HEADERS_XML = {
     "X-Friend-Circle": "1.0"
 }
 
-timeout = (10, 15) # 连接超时和读取超时，防止 requests 接受时间过长
+# 修改超时设置
+timeout = (5, 10)  # 减少连接超时和读取超时时间
+
+# 创建带有重试机制的会话
+def create_session():
+    session = requests.Session()
+    retry_strategy = Retry(
+        total=3,  # 最多重试3次
+        backoff_factor=0.5,  # 重试间隔
+        status_forcelist=[500, 502, 503, 504]  # 需要重试的HTTP状态码
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    return session
+
+# 添加缓存装饰器
+@lru_cache(maxsize=100)
+def cached_get_feed(url, headers):
+    session = create_session()
+    try:
+        response = session.get(url, headers=headers, timeout=timeout)
+        return response
+    except Exception as e:
+        logging.error(f"获取 feed 失败: {url}, 错误: {e}")
+        return None
 
 def format_published_time(time_str):
     """
