@@ -343,6 +343,17 @@ def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = N
         response = requests.get(json_url, timeout=(3, 5), verify=False)
         response.raise_for_status()
         friends_data = response.json()
+        
+        # 确保数据格式正确
+        if not isinstance(friends_data, dict) or 'friends' not in friends_data:
+            logging.error("友链数据格式不正确，应为 {'friends': [['name', 'link', 'avatar'], ...]}")
+            return {}, {}
+        
+        # 将数组格式转换为字典格式
+        friends = [
+            {"name": friend[0], "link": friend[1], "avatar": friend[2] if len(friend) > 2 else ""}
+            for friend in friends_data['friends']
+        ]
     except Exception as e:
         logging.error(f"获取友链数据失败: {str(e)}")
         return {}, {}
@@ -356,7 +367,7 @@ def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = N
         # 提交所有任务
         future_to_friend = {
             executor.submit(process_friend, friend, specific_RSS, count): friend
-            for friend in friends_data
+            for friend in friends
         }
         
         # 处理结果
@@ -368,15 +379,15 @@ def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = N
                     result["article_data"].extend(friend_result)
                 else:
                     lost_friends["lost_friends"].append({
-                        "name": friend.get("name", "未知"),
-                        "link": friend.get("link", ""),
+                        "name": friend["name"],
+                        "link": friend["link"],
                         "error": "处理失败"
                     })
             except Exception as e:
-                logging.error(f"处理友链 {friend.get('name', '未知')} 时发生错误: {str(e)}")
+                logging.error(f"处理友链 {friend['name']} 时发生错误: {str(e)}")
                 lost_friends["lost_friends"].append({
-                    "name": friend.get("name", "未知"),
-                    "link": friend.get("link", ""),
+                    "name": friend["name"],
+                    "link": friend["link"],
                     "error": str(e)
                 })
     
