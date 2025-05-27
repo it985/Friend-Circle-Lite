@@ -57,7 +57,7 @@ def email_sender(
             server.sendmail(sender_email, target_email, msg.as_string())
             print(f'邮件已发送到 {target_email}')
     except Exception as e:
-        logging.error(f'邮件发送失败，目标地址：{target_email}，错误信息：{e}')
+        logging.error(f'邮件发送失败，目标地址: {target_email}，错误信息: {e}')
 
 def send_emails(emails, sender_email, smtp_server, port, password, subject, body, template_path=None, template_data=None, use_tls=True):
     """
@@ -76,5 +76,5 @@ def send_emails(emails, sender_email, smtp_server, port, password, subject, body
     use_tls (bool): 是否使用 TLS 加密。默认为 True。
     """
     for email in emails:
-        logging.info(f'正在发送邮件到 {email}，邮件内容：{subject}')
+        logging.info(f'正在发送邮件到 {email}，邮件内容: {subject}')
         email_sender(email, sender_email, smtp_server, port, password, subject, body, template_path, template_data, use_tls)

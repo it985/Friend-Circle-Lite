@@ -7,23 +7,6 @@ from zoneinfo import ZoneInfo
 import requests
 import feedparser
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
-import time
-from functools import lru_cache
-import math
-import urllib3
-import warnings
-from typing import List, Dict, Tuple, Any
-
-# 禁用不安全请求警告
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
-# 配置日志
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
 
 # 标准化的请求头
 HEADERS_JSON = {
@@ -50,33 +33,7 @@ HEADERS_XML = {
     "X-Friend-Circle": "1.0"
 }
 
-# 修改超时设置
-timeout = (3, 5)  # 进一步减少连接超时和读取超时时间
-
-# 创建带有重试机制的会话
-def create_session():
-    session = requests.Session()
-    retry_strategy = Retry(
-        total=2,  # 减少重试次数
-        backoff_factor=0.3,  # 减少重试间隔
-        status_forcelist=[500, 502, 503, 504],
-        allowed_methods=["GET", "HEAD", "OPTIONS"]  # 允许重试的 HTTP 方法
-    )
-    adapter = HTTPAdapter(max_retries=retry_strategy)
-    session.mount("http://", adapter)
-    session.mount("https://", adapter)
-    return session
-
-# 添加缓存装饰器
-@lru_cache(maxsize=100)
-def cached_get_feed(url, headers):
-    session = create_session()
-    try:
-        response = session.get(url, headers=headers, timeout=timeout, verify=False)
-        return response
-    except Exception as e:
-        logging.error(f"获取 feed 失败: {url}, 错误: {e}")
-        return None
+timeout = (10, 15) # 连接超时和读取超时，防止requests接受时间过长
 
 def format_published_time(time_str):
     """
@@ -139,23 +96,22 @@ def check_feed(blog_url, session):
     
     possible_feeds = [
         ('atom', '/atom.xml'),
-        ('rss', '/rss.xml'),
+        ('rss', '/rss.xml'), # 2024-07-26 添加 /rss.xml内容的支持
         ('rss2', '/rss2.xml'),
-        ('rss3', '/rss.php'),
+        ('rss3', '/rss.php'), # 2024-12-07 添加 /rss.php内容的支持
         ('feed', '/feed'),
-        ('feed2', '/feed.xml'),
+        ('feed2', '/feed.xml'), # 2024-07-26 添加 /feed.xml内容的支持
         ('feed3', '/feed/'),
-        ('index', '/index.xml')
+        ('index', '/index.xml') # 2024-07-25 添加 /index.xml内容的支持
     ]
 
     for feed_type, path in possible_feeds:
         feed_url = blog_url.rstrip('/') + path
         try:
-            response = session.get(feed_url, headers=HEADERS_XML, timeout=timeout, verify=False)
+            response = session.get(feed_url, headers=HEADERS_XML, timeout=timeout)
             if response.status_code == 200:
                 return [feed_type, feed_url]
-        except requests.RequestException as e:
-            logging.debug(f"尝试访问 {feed_url} 失败: {str(e)}")
+        except requests.RequestException:
             continue
     logging.warning(f"无法找到 {blog_url} 的订阅链接")
     return ['none', blog_url]
@@ -177,30 +133,31 @@ def parse_feed(url, session, count=5, blog_url=''):
     dict: 包含网站名称、作者、原链接和每篇文章详细内容的字典。
     """
     try:
-        response = session.get(url, headers=HEADERS_XML, timeout=timeout, verify=False)
+        response = session.get(url, headers=HEADERS_XML, timeout=timeout)
         response.encoding = response.apparent_encoding or 'utf-8'
         feed = feedparser.parse(response.text)
         
         result = {
-            'website_name': feed.feed.title if 'title' in feed.feed else '',
-            'author': feed.feed.author if 'author' in feed.feed else '',
-            'link': feed.feed.link if 'link' in feed.feed else '',
+            'website_name': feed.feed.title if 'title' in feed.feed else '', # type: ignore
+            'author': feed.feed.author if 'author' in feed.feed else '', # type: ignore
+            'link': feed.feed.link if 'link' in feed.feed else '', # type: ignore
             'articles': []
         }
         
-        # 预处理所有文章，包括时间解析
-        articles_with_time = []
-        for entry in feed.entries:
+        for _ , entry in enumerate(feed.entries):
+            
             if 'published' in entry:
                 published = format_published_time(entry.published)
             elif 'updated' in entry:
                 published = format_published_time(entry.updated)
+                # 输出警告信息
                 logging.warning(f"文章 {entry.title} 未包含发布时间，已使用更新时间 {published}")
             else:
                 published = ''
-                logging.warning(f"文章 {entry.title} 未包含任何时间信息，请检查原文，设置为默认时间")
+                logging.warning(f"文章 {entry.title} 未包含任何时间信息, 请检查原文, 设置为默认时间")
             
-            article_link = replace_non_domain(entry.link, blog_url) if 'link' in entry else ''
+            # 处理链接中可能存在的错误，比如ip或localhost
+            article_link = replace_non_domain(entry.link, blog_url) if 'link' in entry else '' # type: ignore
             
             article = {
                 'title': entry.title if 'title' in entry else '',
@@ -210,19 +167,16 @@ def parse_feed(url, session, count=5, blog_url=''):
                 'summary': entry.summary if 'summary' in entry else '',
                 'content': entry.content[0].value if 'content' in entry and entry.content else entry.description if 'description' in entry else ''
             }
-            
-            try:
-                time_obj = datetime.strptime(published, '%Y-%m-%d %H:%M') if published else datetime.min
-                articles_with_time.append((time_obj, article))
-            except ValueError:
-                articles_with_time.append((datetime.min, article))
+            result['articles'].append(article)
         
-        articles_with_time.sort(key=lambda x: x[0], reverse=True)
-        result['articles'] = [article for _, article in articles_with_time[:count]]
+        # 对文章按时间排序，并只取前 count 篇文章
+        result['articles'] = sorted(result['articles'], key=lambda x: datetime.strptime(x['published'], '%Y-%m-%d %H:%M'), reverse=True)
+        if count < len(result['articles']):
+            result['articles'] = result['articles'][:count]
         
         return result
     except Exception as e:
-        logging.error(f"无法解析 FEED 地址：{url}，错误：{str(e)}")
+        logging.error(f"无法解析FEED地址：{url} ，请自行排查原因！")
         return {
             'website_name': '',
             'author': '',
@@ -232,6 +186,7 @@ def parse_feed(url, session, count=5, blog_url=''):
 
 def replace_non_domain(link: str, blog_url: str) -> str:
     """
+    暂未实现
     检测并替换字符串中的非正常域名部分（如 IP 地址或 localhost），替换为 blog_url。
     替换后强制使用 https，且考虑 blog_url 尾部是否有斜杠。
 
@@ -240,9 +195,13 @@ def replace_non_domain(link: str, blog_url: str) -> str:
     :return: 替换后的地址字符串
     """
     
+    # 提取link中的路径部分，无需协议和域名
+    # path = re.sub(r'^https?://[^/]+', '', link)
+    # print(path)
+    
     try:
         parsed = urlparse(link)
-        if 'localhost' in parsed.netloc or re.match(r'^\d{1,3}(\.\d{1,3}){3}$', parsed.netloc):  # IP 地址或 localhost
+        if 'localhost' in parsed.netloc or re.match(r'^\d{1,3}(\.\d{1,3}){3}$', parsed.netloc):  # IP地址或localhost
             # 提取 path + query
             path = parsed.path or '/'
             if parsed.query:
@@ -254,167 +213,126 @@ def replace_non_domain(link: str, blog_url: str) -> str:
         logging.warning(f"替换链接时出错：{link}, error: {e}")
         return link
 
-def process_friend(friend: Dict[str, str], specific_RSS: List[Dict[str, str]] = None, count: int = 5, session: requests.Session = None) -> List[Dict[str, Any]]:
+def process_friend(friend, session, count, specific_RSS=[]):
     """
-    处理单个友链
+    处理单个朋友的博客信息。
+
+    参数：
+    friend (list): 包含朋友信息的列表 [name, blog_url, avatar]。
+    session (requests.Session): 用于请求的会话对象。
+    count (int): 获取每个博客的最大文章数。
+    specific_RSS (list): 包含特定 RSS 源的字典列表 [{name, url}]
+
+    返回：
+    dict: 包含朋友博客信息的字典。
+    """
+    name, blog_url, avatar = friend
     
-    :param friend: 友链信息
-    :param specific_RSS: 特定 RSS 配置列表
-    :param count: 获取的文章数量
-    :param session: 用于请求的会话对象
-    :return: 文章列表
-    """
+    # 如果 specific_RSS 中有对应的 name，则直接返回 feed_url
     if specific_RSS is None:
         specific_RSS = []
-    
-    if session is None:
-        session = create_session()
-    
-    name = friend.get("name", "未知")
-    link = friend.get("link", "")
-    
-    logging.info(f"处理友链: {name} ({link})")
-    
-    # 检查是否有特定的 RSS 配置
-    for rss in specific_RSS:
-        if rss.get("name") == name:
-            logging.info(f"使用特定 RSS 配置: {rss['url']}")
-            try:
-                feed = feedparser.parse(rss["url"])
-                if feed.entries:
-                    articles = []
-                    for entry in feed.entries[:count]:
-                        article = {
-                            "title": entry.get("title", "无标题"),
-                            "link": entry.get("link", ""),
-                            "time": entry.get("published", entry.get("updated", "")),
-                            "author": name
-                        }
-                        articles.append(article)
-                    return articles
-            except Exception as e:
-                logging.error(f"处理特定 RSS 失败: {str(e)}")
-    
-    # 如果没有特定 RSS 配置或处理失败，尝试从博客获取
-    try:
-        feed_type, feed_url = check_feed(link, session)
-        if feed_type != 'none':
-            feed = feedparser.parse(feed_url)
-            if feed.entries:
-                articles = []
-                for entry in feed.entries[:count]:
-                    article = {
-                        "title": entry.get("title", "无标题"),
-                        "link": entry.get("link", ""),
-                        "time": entry.get("published", entry.get("updated", "")),
-                        "author": name
-                    }
-                    articles.append(article)
-                return articles
-    except Exception as e:
-        logging.error(f"处理博客 RSS 失败: {str(e)}")
-    
-    return []
+    rss_feed = next((rss['url'] for rss in specific_RSS if rss['name'] == name), None)
+    if rss_feed:
+        feed_url = rss_feed
+        feed_type = 'specific'
+        logging.info(f"“{name}”的博客“ {blog_url} ”为特定RSS源“ {feed_url} ”")
+    else:
+        feed_type, feed_url = check_feed(blog_url, session)
+        logging.info(f"“{name}”的博客“ {blog_url} ”的feed类型为“{feed_type}”, feed地址为“ {feed_url} ”")
 
-def process_friends_batch(friends_batch, session, count, specific_RSS):
-    """处理一批朋友数据"""
-    results = []
-    for friend in friends_batch:
-        try:
-            result = process_friend(friend, session, count, specific_RSS)
-            results.append(result)
-        except Exception as e:
-            logging.error(f"处理朋友数据失败: {friend}, 错误: {e}")
-            results.append({'status': 'error', 'articles': []})
-    return results
-
-def fetch_and_process_data(json_url: str, specific_RSS: List[Dict[str, str]] = None, count: int = 5) -> Tuple[Dict[str, Any], Dict[str, Any]]:
-    """
-    获取并处理数据
-    
-    :param json_url: 友链 JSON 文件 URL
-    :param specific_RSS: 特定 RSS 配置列表
-    :param count: 每个博客获取的文章数量
-    :return: 处理结果和丢失的友链
-    """
-    if specific_RSS is None:
-        specific_RSS = []
-    
-    logging.info(f"开始获取数据，特定 RSS 配置数量: {len(specific_RSS)}")
-    
-    # 创建会话
-    session = create_session()
-    
-    # 获取友链数据
-    try:
-        response = session.get(json_url, timeout=(3, 5), verify=False)
-        response.raise_for_status()
-        friends_data = response.json()
-        
-        # 确保数据格式正确
-        if not isinstance(friends_data, dict) or 'friends' not in friends_data:
-            logging.error("友链数据格式不正确，应为 {'friends': [['name', 'link', 'avatar'], ...]}")
-            return {}, {}
-        
-        # 将数组格式转换为字典格式
-        friends = [
-            {"name": friend[0], "link": friend[1], "avatar": friend[2] if len(friend) > 2 else ""}
-            for friend in friends_data['friends']
+    if feed_type != 'none':
+        feed_info = parse_feed(feed_url, session, count, blog_url)
+        articles = [
+            {
+                'title': article['title'],
+                'created': article['published'],
+                'link': article['link'],
+                'author': name,
+                'avatar': avatar
+            }
+            for article in feed_info['articles']
         ]
-    except Exception as e:
-        logging.error(f"获取友链数据失败: {str(e)}")
-        return {}, {}
-    
-    # 处理每个友链
-    result = {
-        "article_data": [],
-        "statistical_data": {
-            "friends_num": len(friends),
-            "active_num": 0,
-            "article_num": 0,
-            "last_updated_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        for article in articles:
+            logging.info(f"{name} 发布了新文章：{article['title']}，时间：{article['created']}，链接：{article['link']}")
+        
+        return {
+            'name': name,
+            'status': 'active',
+            'articles': articles
         }
-    }
-    lost_friends = {"lost_friends": []}
+    else:
+        logging.warning(f"{name} 的博客 {blog_url} 无法访问")
+        return {
+            'name': name,
+            'status': 'error',
+            'articles': []
+        }
+
+def fetch_and_process_data(json_url, specific_RSS=[], count=5):
+    """
+    读取 JSON 数据并处理订阅信息，返回统计数据和文章信息。
+
+    参数：
+    json_url (str): 包含朋友信息的 JSON 文件的 URL。
+    count (int): 获取每个博客的最大文章数。
+    specific_RSS (list): 包含特定 RSS 源的字典列表 [{name, url}]
+
+    返回：
+    dict: 包含统计数据和文章信息的字典。
+    """
+    session = requests.Session()
     
-    # 创建线程池
-    with ThreadPoolExecutor(max_workers=30) as executor:
-        # 提交所有任务
+    try:
+        response = session.get(json_url, headers=HEADERS_JSON, timeout=timeout)
+        friends_data = response.json()
+    except Exception as e:
+        logging.error(f"无法获取链接：{json_url} ：{e}", exc_info=True)
+        return None
+
+    total_friends = len(friends_data['friends'])
+    active_friends = 0
+    error_friends = 0
+    total_articles = 0
+    article_data = []
+    error_friends_info = []
+
+    with ThreadPoolExecutor(max_workers=10) as executor:
         future_to_friend = {
-            executor.submit(process_friend, friend, specific_RSS, count, session): friend
-            for friend in friends
+            executor.submit(process_friend, friend, session, count, specific_RSS): friend
+            for friend in friends_data['friends']
         }
         
-        # 处理结果
         for future in as_completed(future_to_friend):
             friend = future_to_friend[future]
             try:
-                friend_result = future.result()
-                if friend_result:
-                    result["article_data"].extend(friend_result)
-                    result["statistical_data"]["active_num"] += 1
+                result = future.result()
+                if result['status'] == 'active':
+                    active_friends += 1
+                    article_data.extend(result['articles'])
+                    total_articles += len(result['articles'])
                 else:
-                    lost_friends["lost_friends"].append({
-                        "name": friend["name"],
-                        "link": friend["link"],
-                        "error": "处理失败"
-                    })
+                    error_friends += 1
+                    error_friends_info.append(friend)
             except Exception as e:
-                logging.error(f"处理友链 {friend['name']} 时发生错误: {str(e)}")
-                lost_friends["lost_friends"].append({
-                    "name": friend["name"],
-                    "link": friend["link"],
-                    "error": str(e)
-                })
+                logging.error(f"处理 {friend} 时发生错误: {e}", exc_info=True)
+                error_friends += 1
+                error_friends_info.append(friend)
+
+    result = {
+        'statistical_data': {
+            'friends_num': total_friends,
+            'active_num': active_friends,
+            'error_num': error_friends,
+            'article_num': total_articles,
+            'last_updated_time': datetime.now(ZoneInfo("Asia/Shanghai")).strftime('%Y-%m-%d %H:%M:%S')
+        },
+        'article_data': article_data
+    }
     
-    # 按时间排序
-    result["article_data"].sort(key=lambda x: x.get("time", ""), reverse=True)
-    
-    # 更新文章数量
-    result["statistical_data"]["article_num"] = len(result["article_data"])
-    
-    logging.info(f"数据处理完成，成功获取 {len(result['article_data'])} 篇文章，失败 {len(lost_friends['lost_friends'])} 个友链")
-    return result, lost_friends
+    logging.info(f"数据处理完成，总共有 {total_friends} 位朋友，其中 {active_friends} 位博客可访问，{error_friends} 位博客无法访问")
+
+    return result, error_friends_info
 
 def sort_articles_by_time(data):
     """
@@ -471,8 +389,8 @@ import requests
 
 def marge_errors_from_json_url(errors, marge_json_url):
     """
-    从另一个网络 JSON 文件中获取错误信息并遍历，删除在 errors 中，
-    不存在于 marge_errors 中的友链信息。
+    从另一个网络 JSON 文件中获取错误信息并遍历，删除在errors中，
+    不存在于marge_errors中的友链信息。
 
     参数：
     errors (list): 包含错误信息的列表
@@ -499,7 +417,7 @@ def marge_errors_from_json_url(errors, marge_json_url):
 
 def deal_with_large_data(result):
     """
-    处理文章数据，保留前 150 篇及其作者在后续文章中的出现。
+    处理文章数据，保留前150篇及其作者在后续文章中的出现。
     
     参数：
     result (dict): 包含统计数据和文章数据的字典。

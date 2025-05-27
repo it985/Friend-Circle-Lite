@@ -15,26 +15,6 @@ spider_settings:
     # merge_json_url: "https://fc.study996.cn"
     merge_json_url: "https://fc.20000216.xyz"
 
-
-# 服务器配置
-# 解释：服务器相关配置，包括静态文件路径、CORS 设置等
-#   static_dir:         静态文件目录
-#   main_dir:           主文件目录
-#   allowed_origins:    允许的 CORS 来源
-#   rate_limit:         请求频率限制
-#     limit:            时间窗口内允许的最大请求数
-#     window:           时间窗口大小（秒）
-server:
-  static_dir: "static"
-  main_dir: "main"
-  allowed_origins:
-    # - "https://fc.liushen.fun"
-    - "https://fc.study996.cn"
-    - "https://fc.20000216.xyz"
-  rate_limit:
-    limit: 60
-    window: 60
-
 # 邮箱推送功能配置，暂未实现，等待后续开发
 # 解释：每天为指定邮箱推送所有友链文章的更新，仅能指定一个 s
 #   enable:             是否启用邮箱推送功能
