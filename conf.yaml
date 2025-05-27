@@ -9,7 +9,7 @@
 spider_settings:
   enable: true
   json_url: "https://blog.study996.cn/friend.json"
-  article_count: 5
+  article_count: 1
   merge_result:
     enable: true
     # merge_json_url: "https://fc.study996.cn"
@@ -119,8 +119,6 @@ specific_RSS:
     url: "https://www.daniao.org/feed/"
   - name: "主机圈"
     url: "https://vpsloc.com/feed"
-  - name: "小众软件"
-    url: "https://www.appinn.com/feed/"
   - name: "文武科技柜"
     url: "https://www.wangdu.site/feed"
   - name: "Kevin's"
@@ -163,24 +161,6 @@ specific_RSS:
     url: "https://www.chnci.cc/feed/"
   - name: "勿埋我心"
     url: "https://www.skyqian.com/feed/"
-  - name: "异次元软件世界"
-    url: "https://www.iplaysoft.com/feed/atom"
-  - name: "果核剥壳"
-    url: "https://www.ghxi.com/feed"
-  - name: "蓝点网"
-    url: "https://www.landiannews.com/rss"
-  - name: "小可博客"
-    url: "https://www.keke.moe/feed"
-  - name: "海棠网"
-    url: "https://www.haitangw.cc/feed"
-  - name: "大眼仔旭"
-    url: "https://www.dayanzai.me/?feed=rss"
-  - name: "鸭先知"
-    url: "https://www.yxzhi.com/feed"
-  - name: "佛系软件"
-    url: "https://foxirj.com/feed"
-  - name: "App 热"
-    url: "https://apphot.cc/feed"
   - name: "sky 博客"
     url: "https://www.5ee.net/rss.xml"
   - name: "ZLX STUDIO"
@@ -387,3 +367,28 @@ specific_RSS:
   #   url: "https://retire50blog.wang/feed"
   # - name: "森鹿语 – 探索充满奇幻冒险的二次元世界"
   #   url: "https://www.sluyu.com/feed/"
+  # - name: "异次元软件世界"
+  #   url: "https://www.iplaysoft.com/feed/atom"
+  # - name: "果核剥壳"
+  #   url: "https://www.ghxi.com/feed"
+  # - name: "蓝点网"
+  #   url: "https://www.landiannews.com/rss"
+  # - name: "小可博客"
+  #   url: "https://www.keke.moe/feed"
+  # - name: "海棠网"
+  #   url: "https://www.haitangw.cc/feed"
+  # - name: "大眼仔旭"
+  #   url: "https://www.dayanzai.me/?feed=rss"
+  # - name: "鸭先知"
+  #   url: "https://www.yxzhi.com/feed"
+  # - name: "佛系软件"
+  #   url: "https://foxirj.com/feed"
+  # - name: "App 热"
+  #   url: "https://apphot.cc/feed"
+  # - name: "小众软件"
+  #   url: "https://www.appinn.com/feed/"
+
+
+
+
+
