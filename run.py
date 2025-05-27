@@ -48,7 +48,16 @@ def run_spider(config: Dict[str, Any]) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     logging.info("爬虫已启用")
     json_url = config['spider_settings']['json_url']
     article_count = config['spider_settings']['article_count']
-    specific_RSS = config['specific_RSS']
+    
+    # 确保 specific_RSS 配置存在
+    specific_RSS = config.get('specific_RSS', [])
+    if specific_RSS:
+        logging.info(f"找到 {len(specific_RSS)} 个特定 RSS 配置")
+        for rss in specific_RSS:
+            logging.info(f"特定 RSS: {rss['name']} -> {rss['url']}")
+    else:
+        logging.info("未找到特定 RSS 配置")
+    
     logging.info("正在从 {json_url} 中获取，每个博客获取 {article_count} 篇文章".format(json_url=json_url, article_count=article_count))
     
     result, lost_friends = fetch_and_process_data(json_url=json_url, specific_RSS=specific_RSS, count=article_count)
