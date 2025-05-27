@@ -11,6 +11,13 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import time
 from functools import lru_cache
+import math
+
+# 配置日志
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 # 标准化的请求头
 HEADERS_JSON = {
@@ -38,15 +45,15 @@ HEADERS_XML = {
 }
 
 # 修改超时设置
-timeout = (5, 10)  # 减少连接超时和读取超时时间
+timeout = (3, 5)  # 进一步减少连接超时和读取超时时间
 
 # 创建带有重试机制的会话
 def create_session():
     session = requests.Session()
     retry_strategy = Retry(
-        total=3,  # 最多重试3次
-        backoff_factor=0.5,  # 重试间隔
-        status_forcelist=[500, 502, 503, 504]  # 需要重试的HTTP状态码
+        total=2,  # 减少重试次数
+        backoff_factor=0.3,  # 减少重试间隔
+        status_forcelist=[500, 502, 503, 504]
     )
     adapter = HTTPAdapter(max_retries=retry_strategy)
     session.mount("http://", adapter)
@@ -266,10 +273,10 @@ def process_friend(friend, session, count, specific_RSS=[]):
     if rss_feed:
         feed_url = rss_feed
         feed_type = 'specific'
-        logging.info(f"“{name}”的博客“ {blog_url} ”为特定 RSS 源“ {feed_url} ”")
+        logging.info(f'"{name}"的博客"{blog_url}"为特定 RSS 源"{feed_url}"')
     else:
         feed_type, feed_url = check_feed(blog_url, session)
-        logging.info(f"“{name}”的博客“ {blog_url} ”的 feed 类型为"{feed_type}", feed 地址为"{feed_url}"")
+        logging.info(f'"{name}"的博客"{blog_url}"的 feed 类型为"{feed_type}", feed 地址为"{feed_url}"')
 
     if feed_type != 'none':
         feed_info = parse_feed(feed_url, session, count, blog_url)
@@ -285,7 +292,7 @@ def process_friend(friend, session, count, specific_RSS=[]):
         ]
         
         for article in articles:
-            logging.info(f"{name} 发布了新文章：{article['title']}，时间：{article['created']}，链接：{article['link']}")
+            logging.info(f'{name} 发布了新文章：{article["title"]}，时间：{article["created"]}，链接：{article["link"]}')
         
         return {
             'name': name,
@@ -293,12 +300,24 @@ def process_friend(friend, session, count, specific_RSS=[]):
             'articles': articles
         }
     else:
-        logging.warning(f"{name} 的博客 {blog_url} 无法访问")
+        logging.warning(f'{name} 的博客 {blog_url} 无法访问')
         return {
             'name': name,
             'status': 'error',
             'articles': []
         }
+
+def process_friends_batch(friends_batch, session, count, specific_RSS):
+    """处理一批朋友数据"""
+    results = []
+    for friend in friends_batch:
+        try:
+            result = process_friend(friend, session, count, specific_RSS)
+            results.append(result)
+        except Exception as e:
+            logging.error(f"处理朋友数据失败: {friend}, 错误: {e}")
+            results.append({'status': 'error', 'articles': []})
+    return results
 
 def fetch_and_process_data(json_url, specific_RSS=[], count=5):
     """
@@ -312,7 +331,7 @@ def fetch_and_process_data(json_url, specific_RSS=[], count=5):
     返回：
     dict: 包含统计数据和文章信息的字典。
     """
-    session = requests.Session()
+    session = create_session()
     
     try:
         response = session.get(json_url, headers=HEADERS_JSON, timeout=timeout)
@@ -328,27 +347,44 @@ def fetch_and_process_data(json_url, specific_RSS=[], count=5):
     article_data = []
     error_friends_info = []
 
-    with ThreadPoolExecutor(max_workers=10) as executor:
-        future_to_friend = {
-            executor.submit(process_friend, friend, session, count, specific_RSS): friend
-            for friend in friends_data['friends']
-        }
-        
-        for future in as_completed(future_to_friend):
-            friend = future_to_friend[future]
-            try:
-                result = future.result()
-                if result['status'] == 'active':
-                    active_friends += 1
-                    article_data.extend(result['articles'])
-                    total_articles += len(result['articles'])
-                else:
+    # 计算批次大小和批次数量
+    batch_size = 10  # 每批处理的朋友数量
+    num_batches = math.ceil(total_friends / batch_size)
+    
+    logging.info(f"开始处理 {total_friends} 个朋友数据，分为 {num_batches} 批处理")
+
+    # 增加工作线程数到 30
+    with ThreadPoolExecutor(max_workers=30) as executor:
+        for batch_num in range(num_batches):
+            start_idx = batch_num * batch_size
+            end_idx = min((batch_num + 1) * batch_size, total_friends)
+            current_batch = friends_data['friends'][start_idx:end_idx]
+            
+            logging.info(f"处理第 {batch_num + 1}/{num_batches} 批，包含 {len(current_batch)} 个朋友")
+            
+            future_to_friend = {
+                executor.submit(process_friend, friend, session, count, specific_RSS): friend
+                for friend in current_batch
+            }
+            
+            for future in as_completed(future_to_friend):
+                friend = future_to_friend[future]
+                try:
+                    result = future.result()
+                    if result['status'] == 'active':
+                        active_friends += 1
+                        article_data.extend(result['articles'])
+                        total_articles += len(result['articles'])
+                    else:
+                        error_friends += 1
+                        error_friends_info.append(friend)
+                except Exception as e:
+                    logging.error(f"处理 {friend} 时发生错误：{e}", exc_info=True)
                     error_friends += 1
                     error_friends_info.append(friend)
-            except Exception as e:
-                logging.error(f"处理 {friend} 时发生错误：{e}", exc_info=True)
-                error_friends += 1
-                error_friends_info.append(friend)
+            
+            # 每批处理完成后记录进度
+            logging.info(f"批次 {batch_num + 1} 完成，当前进度：{end_idx}/{total_friends}")
 
     result = {
         'statistical_data': {
