@@ -15,6 +15,8 @@ from rss_subscribe.push_article_update import (
     extract_emails_from_issues
 )
 from push_rss_update.send_email import send_emails
+from friend_circle_lite.config_validator import ConfigValidator
+from friend_circle_lite.performance import PerformanceManager
 
 # ========== 日志设置 ==========
 logging.basicConfig(
@@ -23,40 +25,85 @@ logging.basicConfig(
 )
 
 # ========== 加载配置 ==========
-config = load_config("./conf.yaml")
+def load_and_validate_config(config_path: str):
+    """加载并验证配置"""
+    try:
+        config = load_config(config_path)
+        
+        # 验证配置
+        if not ConfigValidator.validate_config(config):
+            logging.error("配置验证失败，请检查配置文件")
+            return None
+            
+        return config
+        
+    except Exception as e:
+        logging.error(f"加载配置失败: {e}")
+        return None
 
 # ========== 爬虫模块 ==========
-if config["spider_settings"]["enable"]:
-    logging.info("✅ 爬虫已启用")
+if __name__ == "__main__":
+    # 加载并验证配置
+    config = load_and_validate_config("./conf.yaml")
+    if not config:
+        sys.exit(1)
+    
+    # 检查内存使用情况
+    memory_info = PerformanceManager.check_memory_usage()
+    logging.info(f"当前内存使用: {memory_info['percent']:.2f}%")
+    
+    if config["spider_settings"]["enable"]:
+        logging.info("✅ 爬虫已启用")
 
-    json_url = config['spider_settings']['json_url']
-    article_count = config['spider_settings']['article_count']
-    specific_rss = config['specific_RSS']
+        json_url = config['spider_settings']['json_url']
+        article_count = config['spider_settings']['article_count']
+        specific_rss = config['specific_RSS']
 
-    logging.info(f"📥 正在从 {json_url} 获取数据，每个博客获取 {article_count} 篇文章")
-    result, lost_friends = fetch_and_process_data(
-        json_url=json_url,
-        specific_RSS=specific_rss,
-        count=article_count
-    ) # type: ignore
+        logging.info(f"📥 正在从 {json_url} 获取数据，每个博客获取 {article_count} 篇文章")
+        
+        try:
+            result, lost_friends = fetch_and_process_data(
+                json_url=json_url,
+                specific_RSS=specific_rss,
+                count=article_count
+            )
+            
+            if result is None:
+                logging.error("数据获取失败")
+                sys.exit(1)
+                
+        except Exception as e:
+            logging.error(f"数据获取过程中发生错误: {e}")
+            sys.exit(1)
 
-    if config["spider_settings"]["merge_result"]["enable"]:
-        merge_url = config['spider_settings']["merge_result"]['merge_json_url']
-        logging.info(f"🔀 合并功能开启，从 {merge_url} 获取外部数据")
+        if config["spider_settings"]["merge_result"]["enable"]:
+            merge_url = config['spider_settings']["merge_result"]['merge_json_url']
+            logging.info(f"🔀 合并功能开启，从 {merge_url} 获取外部数据")
 
-        result = marge_data_from_json_url(result, f"{merge_url}/all.json")
-        lost_friends = marge_errors_from_json_url(lost_friends, f"{merge_url}/errors.json")
+            try:
+                result = marge_data_from_json_url(result, f"{merge_url}/all.json")
+                lost_friends = marge_errors_from_json_url(lost_friends, f"{merge_url}/errors.json")
+            except Exception as e:
+                logging.error(f"数据合并失败: {e}")
 
-    article_count = len(result.get("article_data", []))
-    logging.info(f"📦 数据获取完毕，共有 {article_count} 位好友的动态，正在处理数据")
+        article_count = len(result.get("article_data", []))
+        logging.info(f"📦 数据获取完毕，共有 {article_count} 位好友的动态，正在处理数据")
 
-    result = deal_with_large_data(result)
+        # 性能优化
+        result = deal_with_large_data(result)
+        result['article_data'] = PerformanceManager.optimize_memory(result['article_data'])
 
-    with open("all.json", "w", encoding="utf-8") as f:
-        json.dump(result, f, ensure_ascii=False, indent=2)
+        # 保存数据
+        try:
+            with open("all.json", "w", encoding="utf-8") as f:
+                json.dump(result, f, ensure_ascii=False, indent=2)
 
-    with open("errors.json", "w", encoding="utf-8") as f:
-        json.dump(lost_friends, f, ensure_ascii=False, indent=2)
+            with open("errors.json", "w", encoding="utf-8") as f:
+                json.dump(lost_friends, f, ensure_ascii=False, indent=2)
+                
+        except Exception as e:
+            logging.error(f"保存数据失败: {e}")
+            sys.exit(1)
 
 # ========== 邮箱推送准备 ==========
 SMTP_isReady = False

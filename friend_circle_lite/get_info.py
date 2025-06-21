@@ -7,6 +7,12 @@ from zoneinfo import ZoneInfo
 import requests
 import feedparser
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from .config_validator import ConfigValidator
+from .security import SecurityManager
+from .retry_utils import RetryManager
+from .performance import PerformanceManager
+from .rss_detector import RSSDetector
+from .feed_parsers import FeedParserFactory
 
 # 标准化的请求头
 HEADERS_JSON = {
@@ -74,119 +80,8 @@ def format_published_time(time_str):
     shanghai_time = parsed_time.astimezone(timezone(timedelta(hours=8)))
     return shanghai_time.strftime('%Y-%m-%d %H:%M')
 
-
-
-def check_feed(blog_url, session):
-    """
-    检查博客的 RSS 或 Atom 订阅链接。
-
-    此函数接受一个博客地址，尝试在其后拼接 '/atom.xml', '/rss2.xml' 和 '/feed'，并检查这些链接是否可访问。
-    Atom 优先，如果都不能访问，则返回 ['none', 源地址]。
-
-    参数：
-    blog_url (str): 博客的基础 URL。
-    session (requests.Session): 用于请求的会话对象。
-
-    返回：
-    list: 包含类型和拼接后的链接的列表。如果 atom 链接可访问，则返回 ['atom', atom_url]；
-            如果 rss2 链接可访问，则返回 ['rss2', rss_url]；
-            如果 feed 链接可访问，则返回 ['feed', feed_url]；
-            如果都不可访问，则返回 ['none', blog_url]。
-    """
-    
-    possible_feeds = [
-        ('atom', '/atom.xml'),
-        ('rss', '/rss.xml'), # 2024-07-26 添加 /rss.xml内容的支持
-        ('rss2', '/rss2.xml'),
-        ('rss3', '/rss.php'), # 2024-12-07 添加 /rss.php内容的支持
-        ('feed', '/feed'),
-        ('feed2', '/feed.xml'), # 2024-07-26 添加 /feed.xml内容的支持
-        ('feed3', '/feed/'),
-        ('index', '/index.xml') # 2024-07-25 添加 /index.xml内容的支持
-    ]
-
-    for feed_type, path in possible_feeds:
-        feed_url = blog_url.rstrip('/') + path
-        try:
-            response = session.get(feed_url, headers=HEADERS_XML, timeout=timeout)
-            if response.status_code == 200:
-                return [feed_type, feed_url]
-        except requests.RequestException:
-            continue
-    logging.warning(f"无法找到 {blog_url} 的订阅链接")
-    return ['none', blog_url]
-
-
-def parse_feed(url, session, count=5, blog_url=''):
-    """
-    解析 Atom 或 RSS2 feed 并返回包含网站名称、作者、原链接和每篇文章详细内容的字典。
-
-    此函数接受一个 feed 的地址（atom.xml 或 rss2.xml），解析其中的数据，并返回一个字典结构，
-    其中包括网站名称、作者、原链接和每篇文章的详细内容。
-
-    参数：
-    url (str): Atom 或 RSS2 feed 的 URL。
-    session (requests.Session): 用于请求的会话对象。
-    count (int): 获取文章数的最大数。如果小于则全部获取，如果文章数大于则只取前 count 篇文章。
-
-    返回：
-    dict: 包含网站名称、作者、原链接和每篇文章详细内容的字典。
-    """
-    try:
-        response = session.get(url, headers=HEADERS_XML, timeout=timeout)
-        response.encoding = response.apparent_encoding or 'utf-8'
-        feed = feedparser.parse(response.text)
-        
-        result = {
-            'website_name': feed.feed.title if 'title' in feed.feed else '', # type: ignore
-            'author': feed.feed.author if 'author' in feed.feed else '', # type: ignore
-            'link': feed.feed.link if 'link' in feed.feed else '', # type: ignore
-            'articles': []
-        }
-        
-        for _ , entry in enumerate(feed.entries):
-            
-            if 'published' in entry:
-                published = format_published_time(entry.published)
-            elif 'updated' in entry:
-                published = format_published_time(entry.updated)
-                # 输出警告信息
-                logging.warning(f"文章 {entry.title} 未包含发布时间，已使用更新时间 {published}")
-            else:
-                published = ''
-                logging.warning(f"文章 {entry.title} 未包含任何时间信息, 请检查原文, 设置为默认时间")
-            
-            # 处理链接中可能存在的错误，比如ip或localhost
-            article_link = replace_non_domain(entry.link, blog_url) if 'link' in entry else '' # type: ignore
-            
-            article = {
-                'title': entry.title if 'title' in entry else '',
-                'author': result['author'],
-                'link': article_link,
-                'published': published,
-                'summary': entry.summary if 'summary' in entry else '',
-                'content': entry.content[0].value if 'content' in entry and entry.content else entry.description if 'description' in entry else ''
-            }
-            result['articles'].append(article)
-        
-        # 对文章按时间排序，并只取前 count 篇文章
-        result['articles'] = sorted(result['articles'], key=lambda x: datetime.strptime(x['published'], '%Y-%m-%d %H:%M'), reverse=True)
-        if count < len(result['articles']):
-            result['articles'] = result['articles'][:count]
-        
-        return result
-    except Exception as e:
-        logging.error(f"无法解析FEED地址：{url} ，请自行排查原因！")
-        return {
-            'website_name': '',
-            'author': '',
-            'link': '',
-            'articles': []
-        }
-
 def replace_non_domain(link: str, blog_url: str) -> str:
     """
-    暂未实现
     检测并替换字符串中的非正常域名部分（如 IP 地址或 localhost），替换为 blog_url。
     替换后强制使用 https，且考虑 blog_url 尾部是否有斜杠。
 
@@ -194,14 +89,12 @@ def replace_non_domain(link: str, blog_url: str) -> str:
     :param blog_url: 替换为的博客地址
     :return: 替换后的地址字符串
     """
-    
-    # 提取link中的路径部分，无需协议和域名
-    # path = re.sub(r'^https?://[^/]+', '', link)
-    # print(path)
+    if not link or not blog_url:
+        return link
     
     try:
         parsed = urlparse(link)
-        if 'localhost' in parsed.netloc or re.match(r'^\d{1,3}(\.\d{1,3}){3}$', parsed.netloc):  # IP地址或localhost
+        if SecurityManager._is_local_address(parsed.netloc):
             # 提取 path + query
             path = parsed.path or '/'
             if parsed.query:
@@ -212,6 +105,41 @@ def replace_non_domain(link: str, blog_url: str) -> str:
     except Exception as e:
         logging.warning(f"替换链接时出错：{link}, error: {e}")
         return link
+
+@RetryManager.retry_on_failure(max_retries=2, delay=1.0)
+def check_feed(blog_url, session):
+    """
+    检查博客的 RSS 或 Atom 订阅链接。
+    使用增强的RSS检测器
+    """
+    detector = RSSDetector(session)
+    feed_type, feed_url = detector.detect_feed(blog_url)
+    return [feed_type, feed_url]
+
+def parse_feed(url, session, count=5, blog_url=''):
+    """
+    解析各种格式的feed
+    """
+    if not SecurityManager.validate_url(url):
+        logging.error(f"不安全的feed URL: {url}")
+        return {
+            'website_name': '',
+            'author': '',
+            'link': '',
+            'articles': []
+        }
+    
+    # 检测feed类型
+    detector = RSSDetector(session)
+    feed_type = detector._detect_feed_type(url)
+    
+    # 获取对应的解析器
+    parser = FeedParserFactory.get_parser(feed_type)
+    
+    # 解析feed
+    result = parser.parse(url, session, count, blog_url)
+    
+    return result
 
 def process_friend(friend, session, count, specific_RSS=[]):
     """

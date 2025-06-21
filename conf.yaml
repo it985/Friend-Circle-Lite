@@ -389,6 +389,32 @@ specific_RSS:
   #   url: "https://www.appinn.com/feed/"
 
 
+# 扩展的RSS配置
+rss_settings:
+  # 自定义RSS路径
+  custom_paths:
+    - "/custom/feed.xml"
+    - "/api/rss"
+    - "/blog/rss.xml"
+  
+  # 特定网站的适配规则
+  site_adapters:
+    - name: "WordPress"
+      patterns: ["*wordpress*", "*wp-content*"]
+      paths: ["/feed/", "/rss/", "/atom/"]
+    
+    - name: "Hexo"
+      patterns: ["*hexo*"]
+      paths: ["/atom.xml", "/rss2.xml", "/rss.xml"]
+    
+    - name: "Hugo"
+      patterns: ["*hugo*"]
+      paths: ["/index.xml", "/rss.xml", "/feed.xml"]
+    
+    - name: "Jekyll"
+      patterns: ["*jekyll*"]
+      paths: ["/feed.xml", "/atom.xml", "/rss.xml"]
+
 
 
 
